@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np                     
 import matplotlib.pyplot as plt
 import os
-import cv2 as cv
 import random
 import seaborn as sns
 from PIL import Image, ImageStat
@@ -16,7 +15,6 @@ import streamlit as st
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import cv2
 import os
 import numpy as np
 import pickle
