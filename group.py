@@ -13,7 +13,6 @@ from PIL import Image, ImageStat
 import matplotlib.image as mpimg
 import glob
 import numpy as np
-import cv2
 from matplotlib import pyplot as plt
 
 def local_css(file_name):
