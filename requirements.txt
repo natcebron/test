@@ -2,3 +2,4 @@ matplotlib
 opencv-python
 seaborn
 tensorflow
+plotly.express
