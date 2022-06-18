@@ -15,7 +15,6 @@ import streamlit as st
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import cv2
 import os
 import numpy as np
 import pickle
