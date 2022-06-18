@@ -9,6 +9,7 @@ import model
 import home
 import about
 import inspect
+import prediction
 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 logo = os.path.join(currentdir, 'ressources/covid_21.png')
@@ -20,7 +21,8 @@ MENU = {
     "Dataset exploration" : exploration,
     "Group comparison" : group,
     "Bias determination" : bias,
-    "Model" : model,    
+    "Model" : model,
+    "Prediction" : prediction    
 }
 
 st.sidebar.title('Menu')

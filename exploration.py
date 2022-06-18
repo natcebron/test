@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np                     
 import matplotlib.pyplot as plt
 import os
-import cv2 as cv
 import random
 import seaborn as sns
 from PIL import Image, ImageStat

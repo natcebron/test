@@ -7,7 +7,6 @@ import pandas as pd
 import numpy as np                     
 import matplotlib.pyplot as plt
 import os
-import cv2 as cv
 import random
 import seaborn as sns
 from PIL import Image, ImageStat
@@ -51,16 +50,11 @@ def app():
 
     st.markdown('## GRAD-CAM')
     image = Image.open(os.path.join(currentdir, 'data/Gradcam.png'))
+    new_image = image.resize((1400, 1000))
 
-    col1, mid, col2 = st.columns([2,2,2])
-    with col1:
-        st.markdown('<p class="font"> Grad-Cam is a method published in 2016 which aims to find out which parts of the image have been used by the model to classify the images. The result is displayed as a heatmap.  </p>', unsafe_allow_html=True)
+    st.markdown('<p class="font"> Grad-Cam is a method published in 2016 which aims to find out which parts of the image have been used by the model to classify the images. The result is displayed as a heatmap.  </p>', unsafe_allow_html=True)
 
-    with mid:
-        st.image(image, width=1000)
-    with col2:
-        st.write(' ')
-
+    st.image(image,width=1200)
     st.markdown('<p class="font"> Using this method we obtain very conclusive results that our model is biased. Indeed, we can see that the areas mostly used by the model (yellow) do not correspond to the lungs but to external parts of the image. This result is even more obvious for the COVID group where we can see that these are always the same areas found. This result explains our accuracy for this very high group.   </p>', unsafe_allow_html=True)
 
 
