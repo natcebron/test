@@ -87,11 +87,11 @@ def app():
         jet = cm.get_cmap("jet")
         jet_colors = jet(np.arange(256))[:, :3]
         jet_heatmap = jet_colors[heatmap]
-        jet_heatmap = keras.preprocessing.image.array_to_img(jet_heatmap)
+        jet_heatmap = array_to_img(jet_heatmap)
         jet_heatmap = jet_heatmap.resize((img.shape[1], img.shape[0]))
-        jet_heatmap = keras.preprocessing.image.img_to_array(jet_heatmap)
+        jet_heatmap = img_to_array(jet_heatmap)
         superimposed_img = jet_heatmap * 1 + img
-        superimposed_img = keras.preprocessing.image.array_to_img(superimposed_img)
+        superimposed_img = array_to_img(superimposed_img)
         plt.axis('off')
         rouge, vert, bleu = superimposed_img.split()
         image_array = np.array(rouge,dtype='float64')
