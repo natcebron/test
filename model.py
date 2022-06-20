@@ -73,7 +73,31 @@ def app():
     preprocess_input = keras.applications.xception.preprocess_input
     decode_predictions = keras.applications.xception.decode_predictions
     last_conv_layer_name = "block14_sepconv2_act"
-
+    def Gradcam2(url):
+        img = tensorflow.keras.preprocessing.image.load_img(url, target_size = img_size) 
+        array = tensorflow.keras.preprocessing.image.img_to_array(img) 
+        array = np.expand_dims(array, axis = 0)
+        model = model_builder(weights = "imagenet")
+        model.layers[-1].activation = None
+        preds = model.predict(array) 
+        heatmap = make_gradcam_heatmap(array, model, last_conv_layer_name)
+        img = tensorflow.keras.preprocessing.image.load_img(url)
+        img = tensorflow.keras.preprocessing.image.img_to_array(img)
+        heatmap = np.uint8(255 * heatmap)
+        jet = cm.get_cmap("jet")
+        jet_colors = jet(np.arange(256))[:, :3]
+        jet_heatmap = jet_colors[heatmap]
+        jet_heatmap = tensorflow.keras.preprocessing.image.array_to_img(jet_heatmap)
+        jet_heatmap = jet_heatmap.resize((img.shape[1], img.shape[0]))
+        jet_heatmap = tensorflow.keras.preprocessing.image.img_to_array(jet_heatmap)
+        superimposed_img = jet_heatmap * 1 + img
+        superimposed_img = tensorflow.keras.preprocessing.image.array_to_img(superimposed_img)
+        plt.axis('off')
+        rouge, vert, bleu = superimposed_img.split()
+        image_array = np.array(rouge,dtype='float64')
+        cv2.imwrite('data/images/gradcam.png',image_array)
+        return superimposed_img
+    
     def Gradcam(url):
         img = tensorflow.keras.preprocessing.image.load_img(url, target_size = img_size) 
         array = tensorflow.keras.preprocessing.image.img_to_array(img) 
@@ -119,10 +143,8 @@ def app():
         if save_uploaded_file(uploaded_file): 
         # display the image
             display_image = Image.open(uploaded_file).convert('L')
-
             array = tensorflow.keras.preprocessing.image.img_to_array(display_image) 
-
-            col1, mid,col2 = st.columns([3,0.5,3])
+            col1, mid,col2 = st.columns([3,3,3])
             fig = plt.figure(figsize=(12, 12))
             plt.imshow(array, cmap='gray')
             plt.axis('off')
@@ -130,15 +152,19 @@ def app():
             with col1:
                 st.header("Upload picture")
                 st.pyplot(fig,use_column_width=True)
-            with mid:
-                st.header("")
+                
             fig2 = plt.figure(figsize=(12, 12))
+            plt.imshow(Gradcam2(os.path.join('data/images',uploaded_file.name)))
+            with mid:
+                st.header("Gradcam")
+                st.pyplot(fig2,use_column_width=True)
+            fig3 = plt.figure(figsize=(12, 12))
             plt.imshow(Gradcam(os.path.join('data/images',uploaded_file.name)))
             
             with col2:
-                st.header("Gradcam picture")
+                st.header("Modified Gradcam")
 
-                st.pyplot(fig2)
+                st.pyplot(fig3)
 
 
             
