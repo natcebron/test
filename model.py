@@ -75,24 +75,24 @@ def app():
     last_conv_layer_name = "block14_sepconv2_act"
 
     def Gradcam(url):
-        img = keras.preprocessing.image.load_img(url, target_size = img_size) 
-        array = keras.preprocessing.image.img_to_array(img) 
+        img = tensorflow.keras.preprocessing.image.load_img(url, target_size = img_size) 
+        array = tensorflow.keras.preprocessing.image.img_to_array(img) 
         array = np.expand_dims(array, axis = 0)
         model = model_builder(weights = "imagenet")
         model.layers[-1].activation = None
         preds = model.predict(array) 
         heatmap = make_gradcam_heatmap(array, model, last_conv_layer_name)
-        img = keras.preprocessing.image.load_img(url)
-        img = keras.preprocessing.image.img_to_array(img)
+        img = tensorflow.keras.preprocessing.image.load_img(url)
+        img = tensorflow.keras.preprocessing.image.img_to_array(img)
         heatmap = np.uint8(255 * heatmap)
         jet = cm.get_cmap("jet")
         jet_colors = jet(np.arange(256))[:, :3]
         jet_heatmap = jet_colors[heatmap]
-        jet_heatmap = keras.preprocessing.image.array_to_img(jet_heatmap)
+        jet_heatmap = tensorflow.keras.preprocessing.image.array_to_img(jet_heatmap)
         jet_heatmap = jet_heatmap.resize((img.shape[1], img.shape[0]))
-        jet_heatmap = keras.preprocessing.image.img_to_array(jet_heatmap)
+        jet_heatmap = tensorflow.keras.preprocessing.image.img_to_array(jet_heatmap)
         superimposed_img = jet_heatmap * 1 + img
-        superimposed_img = keras.preprocessing.image.array_to_img(superimposed_img)
+        superimposed_img = tensorflow.keras.preprocessing.image.array_to_img(superimposed_img)
         plt.axis('off')
         rouge, vert, bleu = superimposed_img.split()
         image_array = np.array(rouge,dtype='float64')
