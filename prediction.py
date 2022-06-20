@@ -42,8 +42,8 @@ def app():
     st.markdown("# X-RAYS PREDICTION")
     dog_breeds_category_path = os.path.join(currentdir, 'data/test.pkl')
 
-    predictor_model = load_model(os.path.join(currentdir, 'data/Model_masks.hdf5'))
-    unet = load_model(os.path.join(currentdir, 'data/UNET.hdf5'))
+    predictor_model = load_model(os.path.join(currentdir, 'Model_masks.hdf5'))
+    unet = load_model(os.path.join(currentdir, 'UNET.hdf5'))
 
     with open(dog_breeds_category_path, 'rb') as handle:
         dog_breeds = pickle.load(handle)
