@@ -75,7 +75,7 @@ def app():
 
     def Gradcam(url):
         img = load_img(url, target_size = img_size) 
-        array = keras.preprocessing.image.img_to_array(img) 
+        array = img_to_array(img) 
         array = np.expand_dims(array, axis = 0)
         model = model_builder(weights = "imagenet")
         model.layers[-1].activation = None
