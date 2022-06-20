@@ -133,7 +133,6 @@ def app():
                 st.header("")
             fig2 = plt.figure(figsize=(12, 12))
             plt.imshow(Gradcam(os.path.join('data/images',uploaded_file.name)))
-            display_image2 = Image.open('data/images/gradcam.png')
             
             with col2:
                 st.header("Gradcam picture")
