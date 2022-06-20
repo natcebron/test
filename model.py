@@ -119,7 +119,7 @@ def app():
         # display the image
             display_image = Image.open(uploaded_file).convert('L')
 
-            array = keras.preprocessing.image.img_to_array(display_image) 
+            array = tensorflow.keras.preprocessing.image.img_to_array(display_image) 
 
             col1, mid,col2 = st.columns([3,0.5,3])
             fig = plt.figure(figsize=(12, 12))
