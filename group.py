@@ -26,6 +26,7 @@ def app():
     st.markdown(""" <style> .font {font-size:20px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
     st.markdown("# GROUP COMPARISON BY PICTURE CHARACTERISTICS")
     st.markdown('<p class="font"> Before the development of a deep learning model, a comparison of the different sets of images was carried out. To do this, a study of the characteristics of the images was performed). </p>', unsafe_allow_html=True)
+    sns.set_theme(style="white", palette=None)
 
 ####################
 # PIXEL DISTRIBUTION 

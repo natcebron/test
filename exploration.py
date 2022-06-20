@@ -11,6 +11,7 @@ import random
 import seaborn as sns
 from PIL import Image, ImageStat
 import matplotlib.image as mpimg
+import cv2 as cv
 
 
 def local_css(file_name):
@@ -37,23 +38,9 @@ def app():
     plt.xlabel("Picture number");
     plt.title("Number of images for each condition");
     plt.subplot(222)
-    plt.pie(comptage['percent'],autopct='%1.1f%%', labels = comptage.index,colors = ('red','green','blue'));
+    plt.pie(comptage['percent'],autopct='%1.1f%%', labels = comptage['group'],colors = ('red','green','blue'));
     plt.title("Percentage for each condition");
     st.pyplot(fig)
-
-    import plotly.express as px
-    from plotly.subplots import make_subplots
-    import plotly.graph_objects as go
-
-    #First SubPlot
-    fig = make_subplots(rows=1, cols=2)
-
-    fig.add_trace(go.Pie(labels = comptage['group'],values = comptage['percent']), row=1, col=2)
-    fig.add_trace(go.Scatter(x=[1, 2, 3], y=[4, 5, 6]), row=1, col=2)
-    fig.update_layout(width=1500,height=400)
-  
-    st.plotly_chart(fig)
-
 
     st.markdown('<p class="font"> Our dataset contains 3 sets of images, the first set contains 11263 images that belong to the Non_Covid condition. The second set contains 11957 images belonging to the COVID condition and the last set contains 10701 images corresponding to the normal condition. </p>', unsafe_allow_html=True)
     st.markdown('<p class="font"> The distribution of images between the sets is respected with approximately 33% per set. </p>', unsafe_allow_html=True)
@@ -62,38 +49,17 @@ def app():
 
     # Fonction pour charger l'image
 
-    # create figure
-    fig = plt.figure(figsize=(20, 7))
-    plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'text.color':'white','xtick.color':'white','ytick.color':'white','axes.facecolor':'#0e1117','axes.edgecolor':'#0e1117'})
-    fig.set_facecolor("#0e1117")
-    # setting values to rows and column variables
-    rows = 1
-    columns = 3
-  
-    # Adds a subplot at the 1st position
-    fig.add_subplot(rows, columns, 1)
-  
-    # showing image
-    plt.imshow(cv.imread(os.path.join(currentdir, 'covid_1.png')), cmap='gray')
-    plt.axis('off')
-    plt.title("COVID",color= 'white',fontsize=15)
-  
-    # Adds a subplot at the 2nd position
-    fig.add_subplot(rows, columns, 2)
-  
-    # showing image
-    plt.imshow(cv.imread(os.path.join(currentdir, 'non_COVID (1).png')), cmap='gray')
-    plt.axis('off')
-    plt.title("Non COVID",color= 'white',fontsize=15)
-  
-    # Adds a subplot at the 3rd position
-    fig.add_subplot(rows, columns, 3)
-  
-    # showing image
-    plt.imshow(cv.imread(os.path.join(currentdir, 'Normal (1).png')), cmap='gray')
-    plt.axis('off')
-    plt.title("Normal",color= 'white',fontsize=15);
-    st.pyplot(fig)
+    col1, col2,col3 = st.columns([1,1,1])
+    with col1:
+                covid = Image.open('data/covid_1.png')
+                st.image(covid,width=400,use_column_width='never',caption='COVID')
+    with col2:
+                normal = Image.open('data/Normal (1).png')
+                st.image(normal,width=400,use_column_width='never',caption='Normal')
+    with col3:
+                n_covid = Image.open('data/non_COVID (1).png')
+                st.image(n_covid,width=400,use_column_width='never',caption='Non COVID')
+
 
     st.markdown('## X-rays Dimensions')
 

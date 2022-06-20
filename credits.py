@@ -25,8 +25,7 @@ def get_img_with_href(local_img_path, target_url, size=50):
 def app():
 
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) 
-    logo_dataScientest = get_img_with_href(os.path.join(currentdir, 'ressources/datascientestLogo.png'), 'https://datascientest.com/')
-    logo_nebulaText = get_img_with_href(os.path.join(currentdir, 'ressources/nebulaText.png'), 'https://github.com/DataScientest/nebula')
+
 
     c1, c2 = st.beta_columns([0.5, 2])
     c1.markdown(logo_dataScientest, unsafe_allow_html=True) 

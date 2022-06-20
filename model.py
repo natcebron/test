@@ -15,7 +15,7 @@ import streamlit as st
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
+import cv2
 import numpy as np
 import pickle
 import tensorflow as tf
@@ -25,7 +25,8 @@ import pandas as pd
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 from tensorflow.python.keras import utils
-
+import keras
+import matplotlib.cm as cm
 
 def local_css(file_name):
     with open(file_name) as f:
@@ -36,39 +37,69 @@ def app():
     local_css(os.path.join(currentdir, "style.css"))
     #Préparation de la page
     st.markdown(""" <style> .font {font-size:20px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
-    st.markdown("# X-RAYS PREDICTION")
-    dog_breeds_category_path = os.path.join(currentdir, 'data/test.pkl')
+    st.markdown("# PRE-PROCESSING METHODS")
+    st.markdown('<p class="font"> In an attempt to eliminate bias, various pre-processing methods were tested. We tested the application of masks using a UNET model, gaussian filter: A method of blurring the image to reduce image noise, adjust gamma: A correction method for controlling brightness, contrast limited adaptive histogram equalization (CLAHE), a technique for modifying the image by improving the contrast. The last method is a mixture of CLAHE and a transformation filter. </p>', unsafe_allow_html=True)
 
-    predictor_model = load_model(os.path.join(currentdir, 'data/Notebook MODEL base + gradcam.hdf5'))
+    image = Image.open(os.path.join(currentdir, 'data/preprocessing method.png'))
+    st.image(image,width=1200)
+    st.markdown("# MODEL RESULTS")
+    st.markdown('<p class="font">  Several application models for these transformations have been tested. The basic model used is Inceptionv3, which is a model widely used in the field of X-ray imaging.</p>', unsafe_allow_html=True)
 
-    with open(dog_breeds_category_path, 'rb') as handle:
-        dog_breeds = pickle.load(handle)
-    #importing all the helper fxn from helper.py which we will create later
-    result = []
-    def predictor(img_path): # here image is file name 
-        image = tf.keras.preprocessing.image.load_img(img_path, target_size=(256, 256))
-        input_arr = tf.keras.preprocessing.image.img_to_array(image)
-        input_arr = np.array([input_arr])  # Convert single image to a batch.
-        input_arr = input_arr.astype('float32') / 255.  # This is VERY important
-        predictions = predictor_model.predict(input_arr)
-        predicted_class_indices = np.argmax(predictions, axis=-1)
-        
-        if predicted_class_indices == 0:
-            st.text('Prediction : COVID')
-        elif predicted_class_indices == 1:
-            st.text('Prediction : Non_COVID')
-        else:
-            st.text('Prediction : Normal')
+    df = pd.read_csv(os.path.join(currentdir, 'data/model results.csv'),sep=";")
+    st.dataframe(data=df,width=1600, height=1600)
+    df2 = pd.read_csv(os.path.join(currentdir, 'data/model results2.csv'),sep=";")
+    st.dataframe(data=df2)
+    def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
+        grad_model = tf.keras.models.Model([model.inputs], [model.get_layer(last_conv_layer_name).output, model.output])
 
+        with tf.GradientTape() as tape:
+            last_conv_layer_output, preds = grad_model(img_array)
+            if pred_index is None:
+                pred_index = tf.argmax(preds[0])
+            class_channel = preds[:, pred_index]
 
+        grads = tape.gradient(class_channel, last_conv_layer_output)
+        pooled_grads = tf.reduce_mean(grads, axis=(0, 1, 2))
 
-    sns.set_theme(style="darkgrid")
+        last_conv_layer_output = last_conv_layer_output[0]
+        heatmap = last_conv_layer_output @ pooled_grads[..., tf.newaxis]
+        heatmap = tf.squeeze(heatmap)
+        heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
+        return heatmap.numpy()   
 
-    sns.set()
+    model_builder = keras.applications.xception.Xception
+    img_size = (299, 299)
+    preprocess_input = keras.applications.xception.preprocess_input
+    decode_predictions = keras.applications.xception.decode_predictions
+    last_conv_layer_name = "block14_sepconv2_act"
 
-    from PIL import Image
+    def Gradcam(url):
+        img = keras.preprocessing.image.load_img(url, target_size = img_size) 
+        array = keras.preprocessing.image.img_to_array(img) 
+        array = np.expand_dims(array, axis = 0)
+        model = model_builder(weights = "imagenet")
+        model.layers[-1].activation = None
+        preds = model.predict(array) 
+        heatmap = make_gradcam_heatmap(array, model, last_conv_layer_name)
+        img = keras.preprocessing.image.load_img(url)
+        img = keras.preprocessing.image.img_to_array(img)
+        heatmap = np.uint8(255 * heatmap)
+        jet = cm.get_cmap("jet")
+        jet_colors = jet(np.arange(256))[:, :3]
+        jet_heatmap = jet_colors[heatmap]
+        jet_heatmap = keras.preprocessing.image.array_to_img(jet_heatmap)
+        jet_heatmap = jet_heatmap.resize((img.shape[1], img.shape[0]))
+        jet_heatmap = keras.preprocessing.image.img_to_array(jet_heatmap)
+        superimposed_img = jet_heatmap * 1 + img
+        superimposed_img = keras.preprocessing.image.array_to_img(superimposed_img)
+        plt.axis('off')
+        rouge, vert, bleu = superimposed_img.split()
+        image_array = np.array(rouge,dtype='float64')
+        cv2.imwrite('data/images/gradcam.png',image_array)
+    st.markdown('<p class="font">  When we apply the mask we have a decrease in model performance for the benefit of interpretability. As far as image transformations are concerned, it is with the contrast strech that we obtain the best results.</p>', unsafe_allow_html=True)
 
-    st.title('X-rays Classifier')
+    st.markdown("# GRADCAM")
+    st.markdown('<p class="font">  Function allowing from an imported image to identify the regions used by the deep learning model.</p>', unsafe_allow_html=True)
 
     def save_uploaded_file(uploaded_file):
         try:
@@ -86,9 +117,17 @@ def app():
         if save_uploaded_file(uploaded_file): 
         # display the image
             display_image = Image.open(uploaded_file)
-            st.image(display_image)
-            prediction = predictor(os.path.join('data/images',uploaded_file.name))
-            os.remove('data/images/'+uploaded_file.name)
+            col1, col2 = st.columns([1,1])
+            with col1:
+                st.image(display_image,width=400,use_column_width='never',caption='Upload picture')
+
+
+            Gradcam(os.path.join('data/images',uploaded_file.name))
+            display_image2 = Image.open('data/images/gradcam.png')
+
+            with col2:
+                st.image(display_image2,width=400,use_column_width='never',caption='Gradcam result')
+
 
             
          

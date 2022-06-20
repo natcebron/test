@@ -18,6 +18,7 @@ import seaborn as sns
 import os
 import numpy as np
 import pickle
+import cv2
 import tensorflow as tf
 from tensorflow.keras import layers
 from tensorflow.keras import models,utils
@@ -26,6 +27,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 from tensorflow.python.keras import utils
 import plotly.express as px
+from PIL import Image
 
 
 def local_css(file_name):
@@ -40,12 +42,28 @@ def app():
     st.markdown("# X-RAYS PREDICTION")
     dog_breeds_category_path = os.path.join(currentdir, 'data/test.pkl')
 
-    predictor_model = load_model(os.path.join(currentdir, 'model.hdf5'))
+    predictor_model = load_model(os.path.join(currentdir, 'data/Model_masks.hdf5'))
+    unet = load_model(os.path.join(currentdir, 'data/UNET.hdf5'))
 
     with open(dog_breeds_category_path, 'rb') as handle:
         dog_breeds = pickle.load(handle)
     #importing all the helper fxn from helper.py which we will create later
-    result = []
+    def m_unet(img):
+        img = tf.keras.preprocessing.image.load_img(img, target_size=(256, 256,3))
+        input_arr = tf.keras.preprocessing.image.img_to_array(img)
+        img = cv2.cvtColor(input_arr, cv2.COLOR_BGR2GRAY)
+        img2 = img /255.
+        test_img_input=np.expand_dims(img2, axis=(0, 3))
+        prediction = (unet.predict(test_img_input)[0,:,:,0] > 0.5).astype(np.uint8)
+        z = (prediction * 255).astype(np.uint8)
+        z2 = Image.fromarray((z).astype('uint8'), mode='L')
+        z3 = Image.fromarray((img).astype('uint8'), mode='L')
+        im_out = Image.composite(z3, z2, z2)  # apply mask
+        img5 = np. array(im_out,dtype='float64')
+        img5 = np.expand_dims(img5, axis=-1)
+        img5.shape
+        cv2.imwrite('data/images/savedImage.png',img5)
+
     def predictor(img_path): # here image is file name 
         image = tf.keras.preprocessing.image.load_img(img_path, target_size=(256, 256))
         input_arr = tf.keras.preprocessing.image.img_to_array(image)
@@ -57,18 +75,8 @@ def app():
         test.columns = ['values']
         test = test.reset_index()
         test.columns = ['name', 'values']
-  
-
         return test
     
-
-
-    sns.set_theme(style="darkgrid")
-
-    sns.set()
-
-    from PIL import Image
-
 
     def save_uploaded_file(uploaded_file):
         try:
@@ -88,12 +96,21 @@ def app():
             display_image = Image.open(uploaded_file)
             col1, col2 = st.columns([1,1])
             with col1:
-                st.image(display_image,width=400,use_column_width='never')
+                st.image(display_image,width=400,use_column_width='never',caption='Upload picture')
+
+
+            m_unet(os.path.join('data/images',uploaded_file.name))
+            display_image2 = Image.open('data/images/savedImage.png')
+
+            with col2:
+                st.image(display_image2,width=400,use_column_width='never',caption='Pre-processed picture')
+
+
             prediction = predictor(os.path.join('data/images',uploaded_file.name))
             prediction = prediction.round(decimals = 2)
             os.remove('data/images/'+uploaded_file.name)
-            with col2:
-                st.image(display_image,width=400,use_column_width='never')
+
+
             fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
             fig.update_layout(width=900,height=600)
 

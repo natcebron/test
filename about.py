@@ -1,59 +1,54 @@
 import streamlit as st 
 import os
+import base64
+import streamlit.components.v1 as components
+import os                      #+Deployment
 import inspect                 #+Deployment
+
+@st.cache(allow_output_mutation=True)
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+@st.cache(allow_output_mutation=True)
+def get_img_with_href(local_img_path, target_url, size=50):
+    img_format = os.path.splitext(local_img_path)[-1].replace('.', '')
+    bin_str = get_base64_of_bin_file(local_img_path)
+    html_code = f'''
+        <a href="{target_url}">
+            <img src="data:image/{img_format};base64,{bin_str}" height={size}px/>
+        </a>'''
+    return html_code
+
 
 def app():
 
-    st.markdown(f"""
-                <style>
-                  .reportview-container .main .block-container{{
-                    padding-top: 0 rem;
-                    marging-top: 0 rem;
-                  }}
-                  .reportview-container .main{{
-                    padding-top: 0 rem;
-                    marging-top: 0 rem;
-                  }} 
-                  .font {{
-                    font-size:20px ; font-family: 'Arial'; color: #FFFFFF;}} 
-               
-                </style>
-               """, unsafe_allow_html=True)
+    currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) 
+
+
+    c1, c2, c3  = st.columns([0.5, 1, 1])
+    with c1:
+        st.markdown(f'''<u>Project members</u> :''', unsafe_allow_html=True)  
+    with c2:
+        logo_linkedin = get_img_with_href(os.path.join(currentdir, 'data/linkedin.png'), 'https://www.linkedin.com/in/damien-bruzzone-7b2836148/', 20)
+        st.markdown(f'''<a href="https://www.linkedin.com/in/damien-bruzzone-7b2836148/" style="text-decoration: none;color:white">Damien BRUZZONE</a> {logo_linkedin}''', unsafe_allow_html=True) 
+    with c3:
+        logo_linkedin = get_img_with_href(os.path.join(currentdir, 'data/linkedin.png'), 'https://www.linkedin.com/in/nathan-cebron-9992a1a4/', 20)
+        st.markdown(f'''<a href="https://www.linkedin.com/in/nathan-cebron-9992a1a4/" style="text-decoration: none;color:white">Nathan CEBRON</a> {logo_linkedin}''', unsafe_allow_html=True)       
   
-    st.markdown('''
-          <h2>ABOUT COVID</h2>
-          <h3><b><i> What is COVID-19? </i></b></h3>   
-          <p class="font">
-            COVID-19 is an infectious disease caused by the SARS-Cov-2 virus. This virus affects humans and has a tropism for the lungs. 
-          </p>
-          <p class="font">
-            This virus appeared at the end of 2019 and was the cause of a pandemic that upset the majority of countries and led to periods of confinement as was the case in France.  
-          </p>
-          <p class="font">
-            This infection can be benign with very common symptoms (fever, cough or respiratory discomfort) but it can also cause more severe forms with cases of acute respiratory distress that can lead to the death of the patient. The rate of asymptomatic forms is estimated to be around 20% of infected persons. Transmission is by airborne spread of the virus.
-Transmission increases in poorly ventilated indoor environments and when the infected person coughs, sneezes, talks or sings. The incubation period averages 5-6 days, with extremes ranging from two to fourteen days. Mortality occurs mainly in the elderly, with the average age of death from Covid-19 being 81 years. 
-          </p>
-          <p class="font">
-           To fight against this virus, numerous vaccination campaigns have been carried out. From 2021, vaccines based on messenger RNA technology have been developed. This vaccination makes it possible to protect the population from serious forms of the disease but does not stop the spread of the virus. 
-          </p>
-          <h3><b><i> How to detect SARS-CoV-2 virus? </i></b></h3>   
-          <p class="font">
-          A diagnostic test for SARS-CoV-2 can be performed if there is a suspicion of coronavirus 2019 (Covid-19) disease on clinical examination. It can be performed by reverse transcriptase polymerase chain reaction tests for the detection of viral RNA (RT-PCR) or by ELISA antibody-based tests for the detection of virion proteins. 
-          </p>
-          <p class="font">
-          Antigenic test is another method to detect this virus. These lateral flow tests are based on the detection of molecules (antigens) of the virus. These tests appeared in the year 2020 with quite satisfactory results and relieving the biological laboratories.
-          </p>
-          <p class="font">
-          Chest CT and chest X-ray, which are routine imaging tools for the diagnosis of pneumonia, have also been used for the detection of COVID cases. They are quick and relatively easy to perform as an adjunct to the clinical examination, without being a viral detection test per se. The use of these imaging technologies has led to the development of artificial intelligence methods for automatic virus detection from lung images.  
-          </p>
-          <h3><b><i> Artificial intelligence for detection ? </i></b></h3> 
-          <h3><b><i> Project </i></b></h3> 
+    c1, c2, c3  = st.columns([0.5, 1, 1])
+    with c2:
+        logo_linkedin = get_img_with_href(os.path.join(currentdir, 'data/linkedin.png'), 'https://www.linkedin.com/in/matthieu-pelingre-3667b0210/', 20)
+        st.markdown(f'''<a href="https://www.linkedin.com/in/matthieu-pelingre-3667b0210/" style="text-decoration: none;color:white">Jos&eacute; Matthieu PELINGRE</a> {logo_linkedin}''', unsafe_allow_html=True) 
 
-          <p class="font">
-           Dataset link <a href="https://www.kaggle.com/datasets/anasmohammedtahir/covidqu">COVID-QU-Ex Dataset</a>.
 
-          ''', unsafe_allow_html=True)
-          
+    c1, c2 = st.columns([0.5, 2])
+    c1.markdown(f'''<u>Project mentor</u> :''', unsafe_allow_html=True)  
+    logo_linkedin = get_img_with_href(os.path.join(currentdir, 'data/linkedin.png'), 'https://www.linkedin.com/in/gaspard-grimm/', 20)
+    c2.markdown(f'''<a href="https://www.linkedin.com/in/gaspard-grimm/" style="text-decoration: none;color:white">Gaspard GRIMM (DataScientest)</a> {logo_linkedin}''', unsafe_allow_html=True)    
 
-    
+    c1, c2 = st.columns([0.5, 2])
+    c1.markdown(f'''<u>Github</u> :''', unsafe_allow_html=True)  
+    c2.markdown(f'''<a href="https://github.com/DataScientest-Studio/DeMACIA-RX">DeMACIA-RX project</a>''', unsafe_allow_html=True) 
 
