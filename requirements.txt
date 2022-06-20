@@ -1,4 +1,5 @@
 matplotlib
+libgl1
 opencv-python==4.5.5.64
 seaborn
 tensorflow
