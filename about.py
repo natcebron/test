@@ -40,7 +40,7 @@ def app():
     c1, c2, c3  = st.columns([0.5, 1, 1])
     with c2:
         logo_linkedin = get_img_with_href(os.path.join(currentdir, 'data/linkedin.png'), 'https://www.linkedin.com/in/matthieu-pelingre-3667b0210/', 20)
-        st.markdown(f'''<a href="https://www.linkedin.com/in/matthieu-pelingre-3667b0210/" style="text-decoration: none;color:white">Jos&eacute; Matthieu PELINGRE</a> {logo_linkedin}''', unsafe_allow_html=True) 
+        st.markdown(f'''<a href="https://www.linkedin.com/in/matthieu-pelingre-3667b0210/" style="text-decoration: none;color:white">Matthieu PELINGRE</a> {logo_linkedin}''', unsafe_allow_html=True) 
 
 
     c1, c2 = st.columns([0.5, 2])
