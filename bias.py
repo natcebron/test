@@ -41,7 +41,7 @@ def app():
         st.write(' ')
 
     with col2:
-        st.dataframe(data=df,width=1600, height=1600)
+        st.dataframe(data=df)
 
     with col3:
         st.write(' ')
