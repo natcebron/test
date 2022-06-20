@@ -121,7 +121,7 @@ def app():
         rouge, vert, bleu = superimposed_img.split()
         image_array = np.array(rouge,dtype='float64')
         cv2.imwrite('data/images/gradcam.png',image_array)
-        return rouge
+        return blue
     st.markdown('<p class="font">  When we apply the mask we have a decrease in model performance for the benefit of interpretability. As far as image transformations are concerned, it is with the contrast strech that we obtain the best results.</p>', unsafe_allow_html=True)
 
     st.markdown("# GRADCAM")
