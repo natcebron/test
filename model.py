@@ -81,8 +81,8 @@ def app():
         model.layers[-1].activation = None
         preds = model.predict(array) 
         heatmap = make_gradcam_heatmap(array, model, last_conv_layer_name)
-        img = keras.preprocessing.image.load_img(url)
-        img = keras.preprocessing.image.img_to_array(img)
+        img = load_img(url)
+        img = img_to_array(img)
         heatmap = np.uint8(255 * heatmap)
         jet = cm.get_cmap("jet")
         jet_colors = jet(np.arange(256))[:, :3]
