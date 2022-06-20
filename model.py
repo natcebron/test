@@ -46,7 +46,7 @@ def app():
     st.markdown('<p class="font">  Several application models for these transformations have been tested. The basic model used is Inceptionv3, which is a model widely used in the field of X-ray imaging.</p>', unsafe_allow_html=True)
 
     df = pd.read_csv(os.path.join(currentdir, 'data/model results.csv'),sep=";")
-    st.dataframe(data=df,width=1600, height=1600)
+    st.dataframe(data=df)
     df2 = pd.read_csv(os.path.join(currentdir, 'data/model results2.csv'),sep=";")
     st.dataframe(data=df2)
     def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
