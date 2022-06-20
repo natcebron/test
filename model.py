@@ -74,7 +74,7 @@ def app():
     last_conv_layer_name = "block14_sepconv2_act"
 
     def Gradcam(url):
-        img = keras.preprocessing.image.load_img(url, target_size = img_size) 
+        img = load_img(url, target_size = img_size) 
         array = keras.preprocessing.image.img_to_array(img) 
         array = np.expand_dims(array, axis = 0)
         model = model_builder(weights = "imagenet")
