@@ -41,12 +41,12 @@ def app():
     st.markdown('<p class="font"> In an attempt to eliminate bias, various pre-processing methods were tested. We tested the application of masks using a UNET model, gaussian filter: A method of blurring the image to reduce image noise, adjust gamma: A correction method for controlling brightness, contrast limited adaptive histogram equalization (CLAHE), a technique for modifying the image by improving the contrast. The last method is a mixture of CLAHE and a transformation filter. </p>', unsafe_allow_html=True)
 
     image = Image.open(os.path.join(currentdir, 'data/preprocessing method.png'))
-    st.image(image,width=1200)
+    st.image(image,width=1000)
     st.markdown("# MODEL RESULTS")
     st.markdown('<p class="font">  Several application models for these transformations have been tested. The basic model used is Inceptionv3, which is a model widely used in the field of X-ray imaging.</p>', unsafe_allow_html=True)
 
     df = pd.read_csv(os.path.join(currentdir, 'data/model results.csv'),sep=";")
-    st.dataframe(data=df,width=1600, height=1600)
+    st.dataframe(data=df)
     df2 = pd.read_csv(os.path.join(currentdir, 'data/model results2.csv'),sep=";")
     st.dataframe(data=df2)
     def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
