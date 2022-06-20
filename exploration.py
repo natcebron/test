@@ -52,13 +52,13 @@ def app():
     col1, col2,col3 = st.columns([1,1,1])
     with col1:
                 covid = Image.open('data/covid_1.png')
-                st.image(covid,width=400,use_column_width='never',caption='COVID')
+                st.image(covid,width=300,use_column_width='never',caption='COVID')
     with col2:
                 normal = Image.open('data/Normal (1).png')
-                st.image(normal,width=400,use_column_width='never',caption='Normal')
+                st.image(normal,width=300,use_column_width='never',caption='Normal')
     with col3:
                 n_covid = Image.open('data/non_COVID (1).png')
-                st.image(n_covid,width=400,use_column_width='never',caption='Non COVID')
+                st.image(n_covid,width=300,use_column_width='never',caption='Non COVID')
 
 
     st.markdown('## X-rays Dimensions')
