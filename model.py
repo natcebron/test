@@ -162,7 +162,7 @@ def app():
             plt.imshow(Gradcam(os.path.join('data/images',uploaded_file.name)))
             
             with col2:
-                st.header("Modified Gradcam")
+                st.header("Simplified Gradcam")
 
                 st.pyplot(fig3)
 
