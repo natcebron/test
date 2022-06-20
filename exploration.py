@@ -67,7 +67,7 @@ def app():
    
     col1, mid, col2 = st.columns([2,2,2])
     with mid:
-        st.image(image, width=512)
+        st.image(image, width=300)
 
     st.markdown('<p class="font"> The images present in our dataset are all of dimension 256 pixels in height and 256 pixels in width. </p>', unsafe_allow_html=True)
 
