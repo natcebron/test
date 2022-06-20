@@ -23,7 +23,7 @@ from tensorflow.keras import layers
 from tensorflow.keras import models,utils
 import pandas as pd
 from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.image import load_img,img_to_array
+from tensorflow.keras.preprocessing.image import load_img,img_to_array,array_to_img
 from tensorflow.python.keras import utils
 import keras
 import matplotlib.cm as cm
