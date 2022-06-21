@@ -1,7 +1,6 @@
 import streamlit as st 
 
 import os 
-os.chdir("C:/Users/natha/DeMACIA-RX-main/Streamlit")
 
 
 import introduction                     #+Deployment
