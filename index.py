@@ -26,8 +26,8 @@ MENU = {
     "Model" : model,
     "Prediction" : prediction,
     "Conclusion" : conclusion,
-    "About":about,"test":__init__          
-}
+    "About":about,
+    "test":__init__}
 
 st.sidebar.title('Menu')
 selection_page = st.sidebar.radio("",list(MENU.keys()))
