@@ -143,13 +143,13 @@ def app():
             plt.axis('off')
 
             with col1:
-                st.header("Upload picture")
+                st.markdown("Upload picture")
                 st.pyplot(fig,use_column_width=True)
                 
             fig2 = plt.figure(figsize=(12, 12))
             plt.imshow(Gradcam(os.path.join('data/images',uploaded_file.name)))
             with mid:
-                st.header("Gradcam before correction")
+                st.markdown("Gradcam before correction")
                 st.pyplot(fig2,use_column_width=True)
             fig3 = plt.figure(figsize=(12, 12))
             m_unet(os.path.join('data/images',uploaded_file.name))
