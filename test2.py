@@ -119,7 +119,7 @@ def app():
     )
    
     if selected_box == 'COVID':
-        path="pictures/COVID"
+        path="pictures/COVID/"
         os.chdir("pictures/COVID")
         files=os.listdir(path)
         cov=random.choice(files)
