@@ -119,11 +119,10 @@ def app():
     )
    
     if selected_box == 'COVID':
-        path="pictures/COVID/"
         os.chdir("pictures/COVID")
-        files=os.listdir(path)
+        files=os.listdir("pictures/Non_COVID")
         cov=random.choice(files)
-        image2 = plt.imread(cov,format='png')
+        image2 = plt.imread(f"pictures/COVID/"{cov},format='png')
 
         col1, mid,col2 = st.columns([3,3,3])
         with col1:
