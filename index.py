@@ -12,6 +12,7 @@ import inspect
 import prediction
 import conclusion
 import about
+import __init__
 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 logo = os.path.join(currentdir, 'ressources/covid_21.png')
