@@ -73,7 +73,7 @@ def app():
         img5 = np. array(im_out,dtype='float64')
         img5 = np.expand_dims(img5, axis=-1)
         img5.shape
-        cv2.imwrite('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png',img5)
+        cv2.imwrite('data/images/savedImage.png',img5)
 
     def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
         grad_model = tf.keras.models.Model([model.inputs], [model.get_layer(last_conv_layer_name).output, model.output])
@@ -119,8 +119,8 @@ def app():
     )
    
     if selected_box == 'COVID':
-        path="C:/Users/natha/Downloads/COVID_Dataset/COVID-19"
-        os.chdir("C:/Users/natha/Downloads/COVID_Dataset/COVID-19")
+        path="pictures/COVID"
+        os.chdir("pictures/COVID")
         files=os.listdir(path)
         cov=random.choice(files)
         image2 = plt.imread(cov,format='png')
@@ -144,18 +144,18 @@ def app():
                 
                 m_unet(os.path.join(cov))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
+        prediction = predictor(os.path.join('savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
     if selected_box == 'Normal':
-        path="C:/Users/natha/Downloads/COVID_Dataset/Normal"
-        os.chdir("C:/Users/natha/Downloads/COVID_Dataset/Normal")
+        path="pictures/Normal"
+        os.chdir("pictures/Normal")
         files=os.listdir(path)
         nor=random.choice(files)
         image3 = plt.imread(nor,format='png')
@@ -179,18 +179,18 @@ def app():
                 
                 m_unet(os.path.join(nor))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
+        prediction = predictor(os.path.join('data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
     if selected_box == 'Non Normal':
-        path="C:/Users/natha/Downloads/COVID_Dataset/Non-COVID"
-        os.chdir("C:/Users/natha/Downloads/COVID_Dataset/Non-COVID")
+        path="pictures/Non_COVID"
+        os.chdir("pictures/Non_COVID")
         files=os.listdir(path)
         nnorm=random.choice(files)
         image4 = plt.imread(nnorm,format='png')
@@ -214,10 +214,10 @@ def app():
                 
                 m_unet(os.path.join(nnorm))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
+        prediction = predictor(os.path.join('data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
