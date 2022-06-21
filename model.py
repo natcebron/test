@@ -45,6 +45,7 @@ def app():
     st.image(image,width=1200)
     st.markdown("# MODEL RESULTS")
     st.markdown('<p class="font">  Several application models for these transformations have been tested. The basic model used is Inceptionv3, which is a model widely used in the field of X-ray imaging.</p>', unsafe_allow_html=True)
+    unet = load_model(os.path.join(currentdir, 'data/UNET.hdf5'))
 
     df = pd.read_csv(os.path.join(currentdir, 'data/model results.csv'),sep=";")
     st.dataframe(data=df)
@@ -73,7 +74,7 @@ def app():
     preprocess_input = keras.applications.xception.preprocess_input
     decode_predictions = keras.applications.xception.decode_predictions
     last_conv_layer_name = "block14_sepconv2_act"
-    def Gradcam2(url):
+    def Gradcam(url):
         img = tensorflow.keras.preprocessing.image.load_img(url, target_size = img_size) 
         array = tensorflow.keras.preprocessing.image.img_to_array(img) 
         array = np.expand_dims(array, axis = 0)
@@ -98,30 +99,22 @@ def app():
         cv2.imwrite('data/images/gradcam.png',image_array)
         return superimposed_img
     
-    def Gradcam(url):
-        img = tensorflow.keras.preprocessing.image.load_img(url, target_size = img_size) 
-        array = tensorflow.keras.preprocessing.image.img_to_array(img) 
-        array = np.expand_dims(array, axis = 0)
-        model = model_builder(weights = "imagenet")
-        model.layers[-1].activation = None
-        preds = model.predict(array) 
-        heatmap = make_gradcam_heatmap(array, model, last_conv_layer_name)
-        img = tensorflow.keras.preprocessing.image.load_img(url)
-        img = tensorflow.keras.preprocessing.image.img_to_array(img)
-        heatmap = np.uint8(255 * heatmap)
-        jet = cm.get_cmap("jet")
-        jet_colors = jet(np.arange(256))[:, :3]
-        jet_heatmap = jet_colors[heatmap]
-        jet_heatmap = tensorflow.keras.preprocessing.image.array_to_img(jet_heatmap)
-        jet_heatmap = jet_heatmap.resize((img.shape[1], img.shape[0]))
-        jet_heatmap = tensorflow.keras.preprocessing.image.img_to_array(jet_heatmap)
-        superimposed_img = jet_heatmap * 1 + img
-        superimposed_img = tensorflow.keras.preprocessing.image.array_to_img(superimposed_img)
-        plt.axis('off')
-        rouge, vert, bleu = superimposed_img.split()
-        image_array = np.array(rouge,dtype='float64')
-        cv2.imwrite('data/images/gradcam.png',image_array)
-        return rouge
+    def m_unet(img):
+        img = tf.keras.preprocessing.image.load_img(img, target_size=(256, 256,3))
+        input_arr = tf.keras.preprocessing.image.img_to_array(img)
+        img = cv2.cvtColor(input_arr, cv2.COLOR_BGR2GRAY)
+        img2 = img /255.
+        test_img_input=np.expand_dims(img2, axis=(0, 3))
+        prediction = (unet.predict(test_img_input)[0,:,:,0] > 0.5).astype(np.uint8)
+        z = (prediction * 255).astype(np.uint8)
+        z2 = Image.fromarray((z).astype('uint8'), mode='L')
+        z3 = Image.fromarray((img).astype('uint8'), mode='L')
+        im_out = Image.composite(z3, z2, z2)  # apply mask
+        img5 = np. array(im_out,dtype='float64')
+        img5 = np.expand_dims(img5, axis=-1)
+        img5.shape
+        cv2.imwrite('data/images/savedImage.png',img5)
+        
     st.markdown('<p class="font">  When we apply the mask we have a decrease in model performance for the benefit of interpretability. As far as image transformations are concerned, it is with the contrast strech that we obtain the best results.</p>', unsafe_allow_html=True)
 
     st.markdown("# GRADCAM")
@@ -154,15 +147,16 @@ def app():
                 st.pyplot(fig,use_column_width=True)
                 
             fig2 = plt.figure(figsize=(12, 12))
-            plt.imshow(Gradcam2(os.path.join('data/images',uploaded_file.name)))
+            plt.imshow(Gradcam(os.path.join('data/images',uploaded_file.name)))
             with mid:
-                st.header("Gradcam")
+                st.header("Gradcam before correction")
                 st.pyplot(fig2,use_column_width=True)
             fig3 = plt.figure(figsize=(12, 12))
-            plt.imshow(Gradcam(os.path.join('data/images',uploaded_file.name)))
+            m_unet(os.path.join('data/images',uploaded_file.name))
+            plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
             
             with col2:
-                st.header("Simplified Gradcam")
+                st.header("Gradcam after correction")
 
                 st.pyplot(fig3)
 
