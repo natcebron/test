@@ -26,7 +26,7 @@ MENU = {
     "Model" : model,
     "Prediction" : prediction,
     "Conclusion" : conclusion,
-    "About":about        
+    "About":about,"test":__init__,           
 }
 
 st.sidebar.title('Menu')
