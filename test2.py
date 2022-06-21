@@ -33,7 +33,7 @@ import random
 
 def app():
     predictor_model = load_model(os.path.join('Model_masks.hdf5'))
-    unet = load_model(os.path.join('data/UNET.hdf5'))
+    unet = load_model(os.path.join('UNET.hdf5'))
     def Gradcam(url):
         img = keras.preprocessing.image.load_img(url, target_size = img_size) 
         array = keras.preprocessing.image.img_to_array(img) 
