@@ -32,7 +32,7 @@ import plotly.express as px
 import random 
 
 def app():
-    predictor_model = load_model(os.path.join('data/Model_masks.hdf5'))
+    predictor_model = load_model(os.path.join('Model_masks.hdf5'))
     unet = load_model(os.path.join('data/UNET.hdf5'))
     def Gradcam(url):
         img = keras.preprocessing.image.load_img(url, target_size = img_size) 
