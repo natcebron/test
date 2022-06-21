@@ -156,7 +156,7 @@ def app():
             plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
             
             with col2:
-                st.header("Gradcam after correction")
+                st.markdown("Gradcam after correction")
 
                 st.pyplot(fig3)
 
