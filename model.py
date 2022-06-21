@@ -45,7 +45,7 @@ def app():
     st.image(image,width=1200)
     st.markdown("# MODEL RESULTS")
     st.markdown('<p class="font">  Several application models for these transformations have been tested. The basic model used is Inceptionv3, which is a model widely used in the field of X-ray imaging.</p>', unsafe_allow_html=True)
-    unet = load_model(os.path.join(currentdir, 'data/UNET.hdf5'))
+    unet = load_model(os.path.join(currentdir, 'UNET.hdf5'))
 
     df = pd.read_csv(os.path.join(currentdir, 'data/model results.csv'),sep=";")
     st.dataframe(data=df)
