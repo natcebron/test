@@ -76,16 +76,16 @@ def app():
         cv2.imwrite('data/images/savedImage.png',img5)
 
     def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
-        grad_model = tf.keras.models.Model([model.inputs], [model.get_layer(last_conv_layer_name).output, model.output])
+        grad_model = tensorflow.keras.models.Model([model.inputs], [model.get_layer(last_conv_layer_name).output, model.output])
 
-        with tf.GradientTape() as tape:
+        with tensorflow.GradientTape() as tape:
             last_conv_layer_output, preds = grad_model(img_array)
             if pred_index is None:
-                pred_index = tf.argmax(preds[0])
+                pred_index = tensorflow.argmax(preds[0])
             class_channel = preds[:, pred_index]
 
         grads = tape.gradient(class_channel, last_conv_layer_output)
-        pooled_grads = tf.reduce_mean(grads, axis=(0, 1, 2))
+        pooled_grads = tensorflow.reduce_mean(grads, axis=(0, 1, 2))
 
         last_conv_layer_output = last_conv_layer_output[0]
         heatmap = last_conv_layer_output @ pooled_grads[..., tf.newaxis]
