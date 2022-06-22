@@ -160,7 +160,7 @@ def app():
         path="pictures/Normal"
         files=os.listdir(path)
         nor=random.choice(files)
-        url = f"https://github.com/natcebron/test/blob/main/pictures/Normal/{nor}"
+        url = f"pictures/Normal/{nor}"
 
         image3 = plt.imread(url,format='png')
 
@@ -193,10 +193,10 @@ def app():
         st.plotly_chart(fig)
 
     if selected_box == 'Non Normal':
-        path="https://github.com/natcebron/test/blob/main/pictures/Non_COVID"
+        path="pictures/Non_COVID"
         files=os.listdir(path)
         nnorm=random.choice(files)
-        url = f"https://github.com/natcebron/test/blob/main/pictures/Non_COVID/{nnorm}"
+        url = f"pictures/Non_COVID/{nnorm}"
 
         image4 = plt.imread(nnorm,format='png')
 
