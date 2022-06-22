@@ -38,13 +38,13 @@ def app():
     local_css(os.path.join(currentdir, "style.css"))
     #Préparation de la page
     st.markdown(""" <style> .font {font-size:20px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
-    st.markdown("# PRE-PROCESSING METHODS")
-    st.markdown('<p class="font"> In an attempt to eliminate bias, various pre-processing methods were tested. We tested the application of masks using a UNET model, gaussian filter: A method of blurring the image to reduce image noise, adjust gamma: A correction method for controlling brightness, contrast limited adaptive histogram equalization (CLAHE), a technique for modifying the image by improving the contrast. The last method is a mixture of CLAHE and a transformation filter. </p>', unsafe_allow_html=True)
+    st.markdown("# MÉTHODES DE PRÉTRAITEMENT")
+    st.markdown("<p class='font'> In an attempt to eliminate bias, various pre-processing methods were tested. We tested the application of masks using a UNET model, gaussian filter: A method of blurring the image to reduce image noise, adjust gamma: A correction method for controlling brightness, contrast limited adaptive histogram equalization (CLAHE), a technique for modifying the image by improving the contrast. The last method is a mixture of CLAHE and a transformation filter. </p>", unsafe_allow_html=True)
 
     image = Image.open(os.path.join(currentdir, 'data/preprocessing method.png'))
     st.image(image,width=1200)
-    st.markdown("# MODEL RESULTS")
-    st.markdown('<p class="font">  Several application models for these transformations have been tested. The basic model used is Inceptionv3, which is a model widely used in the field of X-ray imaging.</p>', unsafe_allow_html=True)
+    st.markdown("# RÉSULTATS DES MODÈLES")
+    st.markdown("<p class='font'>  Plusieurs modèles d'application de ces transformations ont été testés. Le modèle de base utilisé est Inceptionv3, qui est un modèle largement utilisé dans le domaine de l'imagerie radiologique.', unsafe_allow_html=True)
     unet = load_model(os.path.join(currentdir, 'UNET.hdf5'))
 
     df = pd.read_csv(os.path.join(currentdir, 'data/model results.csv'),sep=";")
@@ -115,10 +115,10 @@ def app():
         img5.shape
         cv2.imwrite('data/images/savedImage.png',img5)
         
-    st.markdown('<p class="font">  When we apply the mask we have a decrease in model performance for the benefit of interpretability. As far as image transformations are concerned, it is with the contrast strech that we obtain the best results.</p>', unsafe_allow_html=True)
+    st.markdown("<p class='font'>  Lorsque nous appliquons le masque, nous avons une diminution des performances du modèle au profit de l'interprétabilité. En ce qui concerne les transformations d'images, c'est avec l'étirement du contraste que nous obtenons les meilleurs résultats.</p>", unsafe_allow_html=True)
 
     st.markdown("# GRADCAM")
-    st.markdown('<p class="font">  Function allowing from an imported image to identify the regions used by the deep learning model.</p>', unsafe_allow_html=True)
+    st.markdown("<p class='font'>  Fonction permettant à partir d'une image importée d'identifier les régions utilisées par le modèle d'apprentissage profond.</p>", unsafe_allow_html=True)
 
     def save_uploaded_file(uploaded_file):
         try:
@@ -149,14 +149,14 @@ def app():
             fig2 = plt.figure(figsize=(12, 12))
             plt.imshow(Gradcam(os.path.join('data/images',uploaded_file.name)))
             with mid:
-                st.markdown("Gradcam before correction")
+                st.markdown("Gradcam avant correction")
                 st.pyplot(fig2,use_column_width=True)
             fig3 = plt.figure(figsize=(12, 12))
             m_unet(os.path.join('data/images',uploaded_file.name))
             plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
             
             with col2:
-                st.markdown("Gradcam after correction")
+                st.markdown("Gradcam après correction")
 
                 st.pyplot(fig3)
 
