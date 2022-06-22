@@ -23,10 +23,10 @@ def app():
     local_css(os.path.join(currentdir, "style.css"))
     #Préparation de la page
     st.markdown(""" <style> .font {font-size:20px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
-    st.markdown("# DATA EXPLORATION")
-    st.markdown('<p class="font"> This part aims to study the characteristics of the analyzed dataset (number of images, proportion per group, visualization). </p>', unsafe_allow_html=True)
+    st.markdown("# EXPLORATION DE DONNÉES")
+    st.markdown("<p class='font'> Cette partie vise à étudier les caractéristiques du jeu de données analysé (nombre d'images, proportion par groupe, visualisation). </p>", unsafe_allow_html=True)
 
-    st.markdown('## Dataset Design')
+    st.markdown("## Conception de l'ensemble de données")
 
     comptage = pd.read_csv(os.path.join(currentdir, 'data/comptage.csv'),sep=';')
 
@@ -35,17 +35,17 @@ def app():
     plt.subplot(221)
     plt.barh(comptage.index,comptage['Nombre images'],color = ('red','green','blue'))
     plt.ylabel("Labels");
-    plt.xlabel("Picture number");
-    plt.title("Number of images for each condition");
+    plt.xlabel("Numéro d'image");
+    plt.title("Nombre d'images pour chaque condition");
     plt.subplot(222)
     plt.pie(comptage['percent'],autopct='%1.1f%%', labels = comptage['group'],colors = ('red','green','blue'));
-    plt.title("Percentage for each condition");
+    plt.title("Pourcentage pour chaque condition");
     st.pyplot(fig)
 
-    st.markdown('<p class="font"> Our dataset contains 3 sets of images, the first set contains 11263 images that belong to the Non_Covid condition. The second set contains 11957 images belonging to the COVID condition and the last set contains 10701 images corresponding to the normal condition. </p>', unsafe_allow_html=True)
-    st.markdown('<p class="font"> The distribution of images between the sets is respected with approximately 33% per set. </p>', unsafe_allow_html=True)
+    st.markdown("<p class='font'> Notre jeu de données contient 3 ensembles d'images, le premier ensemble contient 11263 images qui appartiennent à la condition Non_Covid. Le deuxième ensemble contient 11957 images appartenant à la condition COVID et le dernier ensemble contient 10701 images correspondant à la condition normale. </p>", unsafe_allow_html=True)
+    st.markdown("<p class='font'> La répartition des images entre les ensembles est respectée avec environ 33% par ensemble. </p>", unsafe_allow_html=True)
 
-    st.markdown('## X-rays Visualization')
+    st.markdown('## Visualisation de radiographies')
 
     # Fonction pour charger l'image
 
@@ -61,7 +61,7 @@ def app():
                 st.image(n_covid,width=300,use_column_width='never',caption='Non COVID')
 
 
-    st.markdown('## X-rays Dimensions')
+    st.markdown('## Dimensions des radiographies')
 
     image = Image.open(os.path.join(currentdir, 'data/Presentation1.png'))
    
@@ -69,6 +69,6 @@ def app():
     with mid:
         st.image(image, width=300)
 
-    st.markdown('<p class="font"> The images present in our dataset are all of dimension 256 pixels in height and 256 pixels in width. </p>', unsafe_allow_html=True)
+    st.markdown("<p class='font'> Les images présentes dans notre jeu de données sont toutes de dimension 256 pixels en hauteur et 256 pixels en largeur. </p>", unsafe_allow_html=True)
 
     return None
