@@ -21,8 +21,11 @@ def app():
                """, unsafe_allow_html=True)
   
     st.markdown('''
-          <h2>A PROPOS DU COVID</h2>
-          <h3><b><i> Qu'est-ce que le COVID-19 ? </i></b></h3>   
+          <h2>DEVELOPPEMENT D'UN MODELE DE DEEP LEARNING POUR LA CLASSIFICATION DE RADIOGRAPHIES DANS UN CONTEXTE COVID</h2>
+          <h3>MEMBRES : Damien BRUZZONE, Nathan CEBRON, Matthieu PELINGRE</h3>
+
+          <h3>A PROPOS DU COVID</h3>
+          <h4><b><i> Qu'est-ce que le COVID-19 ? </i></b></h4>   
           <p class="font">
             Le COVID-19 est une maladie infectieuse causée par le virus du SRAS-Cov-2. Ce virus affecte l'homme et a un tropisme pour les poumons. 
           </p>
@@ -36,7 +39,7 @@ La transmission augmente dans les environnements intérieurs mal ventilés et lo
           <p class="font">
            Pour lutter contre ce virus, de nombreuses campagnes de vaccination ont été menées. A partir de 2021, des vaccins basés sur la technologie de l'ARN messager ont été développés. Cette vaccination permet de protéger la population des formes graves de la maladie mais n'arrête pas la propagation du virus. 
           </p>
-          <h3><b><i> Comment détecter le virus SARS-CoV-2 ? </i></b></h3>   
+          <h4><b><i> Comment détecter le virus SARS-CoV-2 ? </i></b></h4>   
           <p class="font">
           Un test de diagnostic du SRAS-CoV-2 peut être effectué en cas de suspicion de maladie à coronavirus 2019 (Covid-19) à l'examen clinique. Il peut être réalisé par des tests d'amplification en chaîne par polymérase avec transcriptase inverse pour la détection de l'ARN viral (RT-PCR) ou par des tests ELISA à base d'anticorps pour la détection des protéines des virions. 
           </p>
@@ -50,7 +53,7 @@ La transmission augmente dans les environnements intérieurs mal ventilés et lo
           <p class="font">
           De nombreuses études sur la reconnaissance de rayons X basées sur l'apprentissage profond ont été réalisées. Dans une revue publiée en 2021 (Serena Low et al, 2021), 52 études publiées basées sur l'étude de radiographies ou de tomodensitogrammes entre 2019 et 2021 ont été résumées avec l'algorithme utilisé et les résultats obtenus. 
           </p>  
-          <h3><b><i> Projet </i></b></h3> 
+          <h4><b><i> Projet </i></b></h4> 
           <p class="font">
           Dans notre étude, nous avons réalisé une étude approfondie des images, ce qui nous a permis de déterminer la présence de biais entre les différents ensembles d'images. Ces biais ont une forte influence sur la performance du modèle. Une confirmation de ces biais a été effectuée à l'aide de méthodes dédiées telles que le grad cam ou les réseaux antagonistes  génératifs (GAN) mais aussi via l'utilisation de jeux de données volontairement biaisés. Des méthodes de prétraitement d'images ont été mises en œuvre pour tenter de corriger ou au moins d'atténuer ces biais. Les résultats obtenus sont satisfaisants (précision : 0,88) mais nécessitent encore des améliorations. L'objectif de ce travail était de mettre en place une méthodologie d'étude pour détecter et corriger les biais au sein de jeux de données qui pourraient avoir un impact négatif sur le comportement d'un modèle d'apprentissage profond.          
           <p class="font">
