@@ -102,7 +102,7 @@ def app():
     plt.show()
 
     st.pyplot(fig2)
-    st.markdown("<p class='font'> Pour tous les ensembles, la distribution des valeurs moyennes des pixels est symétrique avec la présence d'un pic. Ce pic a une valeur plus élevée pour le groupe COVID avec une valeur de 140 par rapport aux groupes Normal et Non-COVID avec des valeurs de 120 et 115 respectivement. L'hypothèse que nous pouvons émettre est que les images du groupe COVID ont une luminosité, un contraste ou une saturation différents par rapport aux deux autres groupes, mais cela reste à confirmer. </p>', unsafe_allow_html=True)
+    st.markdown("<p class='font'> Pour tous les ensembles, la distribution des valeurs moyennes des pixels est symétrique avec la présence d'un pic. Ce pic a une valeur plus élevée pour le groupe COVID avec une valeur de 140 par rapport aux groupes Normal et Non-COVID avec des valeurs de 120 et 115 respectivement. L'hypothèse que nous pouvons émettre est que les images du groupe COVID ont une luminosité, un contraste ou une saturation différents par rapport aux deux autres groupes, mais cela reste à confirmer. </p>", unsafe_allow_html=True)
 
     fig3 = plt.figure(figsize=(20, 7))
     plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'text.color':'white','xtick.color':'white','ytick.color':'white','axes.facecolor':'#0e1117','axes.edgecolor':'#0e1117'})
