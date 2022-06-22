@@ -35,24 +35,24 @@ def app():
     predictor_model = load_model(os.path.join('Model_masks.hdf5'))
     unet = load_model(os.path.join('UNET.hdf5'))
     def Gradcam(url):
-        img = keras.preprocessing.image.load_img(url, target_size = img_size) 
-        array = keras.preprocessing.image.img_to_array(img) 
+        img = tensorflow.keras.preprocessing.image.load_img(url, target_size = img_size) 
+        array = tensorflow.keras.preprocessing.image.img_to_array(img) 
         array = np.expand_dims(array, axis = 0)
         model = model_builder(weights = "imagenet")
         model.layers[-1].activation = None
         preds = model.predict(array) 
         heatmap = make_gradcam_heatmap(array, model, last_conv_layer_name)
-        img = keras.preprocessing.image.load_img(url)
-        img = keras.preprocessing.image.img_to_array(img)
+        img = tensorflow.keras.preprocessing.image.load_img(url)
+        img = tensorflow.keras.preprocessing.image.img_to_array(img)
         heatmap = np.uint8(255 * heatmap)
         jet = cm.get_cmap("jet")
         jet_colors = jet(np.arange(256))[:, :3]
         jet_heatmap = jet_colors[heatmap]
-        jet_heatmap = keras.preprocessing.image.array_to_img(jet_heatmap)
+        jet_heatmap = tensorflow.keras.preprocessing.image.array_to_img(jet_heatmap)
         jet_heatmap = jet_heatmap.resize((img.shape[1], img.shape[0]))
-        jet_heatmap = keras.preprocessing.image.img_to_array(jet_heatmap)
+        jet_heatmap = tensorflow.keras.preprocessing.image.img_to_array(jet_heatmap)
         superimposed_img = jet_heatmap * 1 + img
-        superimposed_img = keras.preprocessing.image.array_to_img(superimposed_img)
+        superimposed_img = tensorflow.keras.preprocessing.image.array_to_img(superimposed_img)
         plt.axis('off')
         rouge, vert, bleu = superimposed_img.split()
         image_array = np.array(superimposed_img,dtype='float64')
@@ -60,8 +60,8 @@ def app():
         return superimposed_img
 
     def m_unet(img):
-        img = tf.keras.preprocessing.image.load_img(img, target_size=(256, 256,3))
-        input_arr = tf.keras.preprocessing.image.img_to_array(img)
+        img = tensorflow.keras.preprocessing.image.load_img(img, target_size=(256, 256,3))
+        input_arr = tensorflow.keras.preprocessing.image.img_to_array(img)
         img = cv2.cvtColor(input_arr, cv2.COLOR_BGR2GRAY)
         img2 = img /255.
         test_img_input=np.expand_dims(img2, axis=(0, 3))
@@ -89,18 +89,18 @@ def app():
 
         last_conv_layer_output = last_conv_layer_output[0]
         heatmap = last_conv_layer_output @ pooled_grads[..., tf.newaxis]
-        heatmap = tf.squeeze(heatmap)
-        heatmap = tf.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
+        heatmap = tensorflow.squeeze(heatmap)
+        heatmap = tensorflow.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
         return heatmap.numpy()  
-    model_builder = keras.applications.xception.Xception
+    model_builder = tensorflow.keras.applications.xception.Xception
     img_size = (299, 299)
-    preprocess_input = keras.applications.xception.preprocess_input
-    decode_predictions = keras.applications.xception.decode_predictions
+    preprocess_input = tensorflow.keras.applications.xception.preprocess_input
+    decode_predictions = tensorflow.keras.applications.xception.decode_predictions
     last_conv_layer_name = "block14_sepconv2_act"
 
     def predictor(img_path): # here image is file name 
-        image = tf.keras.preprocessing.image.load_img(img_path, target_size=(256, 256))
-        input_arr = tf.keras.preprocessing.image.img_to_array(image)
+        image = tensorflow.keras.preprocessing.image.load_img(img_path, target_size=(256, 256))
+        input_arr = tensorflow.keras.preprocessing.image.img_to_array(image)
         input_arr = np.array([input_arr])  # Convert single image to a batch.
         input_arr = input_arr.astype('float32') / 255.  # This is VERY important
         predictions = predictor_model.predict(input_arr)
