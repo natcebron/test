@@ -21,40 +21,40 @@ def app():
                """, unsafe_allow_html=True)
   
     st.markdown('''
-          <h2>ABOUT COVID</h2>
-          <h3><b><i> What is COVID-19? </i></b></h3>   
+          <h2>A PROPOS DU COVID</h2>
+          <h3><b><i> Qu'est-ce que le COVID-19 ? </i></b></h3>   
           <p class="font">
-            COVID-19 is an infectious disease caused by the SARS-Cov-2 virus. This virus affects humans and has a tropism for the lungs. 
+            Le COVID-19 est une maladie infectieuse causée par le virus du SRAS-Cov-2. Ce virus affecte l'homme et a un tropisme pour les poumons. 
           </p>
           <p class="font">
-            This virus appeared at the end of 2019 and was the cause of a pandemic that upset the majority of countries and led to periods of confinement as was the case in France.  
+            Apparu fin 2019, ce virus est à l'origine d'une pandémie qui a bouleversé la majorité des pays et entraîné des périodes d'enfermement comme ce fut le cas en France.  
           </p>
           <p class="font">
-            This infection can be benign with very common symptoms (fever, cough or respiratory discomfort) but it can also cause more severe forms with cases of acute respiratory distress that can lead to the death of the patient. The rate of asymptomatic forms is estimated to be around 20% of infected persons. Transmission is by airborne spread of the virus.
-Transmission increases in poorly ventilated indoor environments and when the infected person coughs, sneezes, talks or sings. The incubation period averages 5-6 days, with extremes ranging from two to fourteen days. Mortality occurs mainly in the elderly, with the average age of death from Covid-19 being 81 years. 
+            Cette infection peut être bénigne avec des symptômes très courants (fièvre, toux ou gêne respiratoire) mais elle peut aussi provoquer des formes plus sévères avec des cas de détresse respiratoire aiguë pouvant conduire au décès du patient. Le taux de formes asymptomatiques est estimé à environ 20% des personnes infectées. La transmission se fait par voie aérienne du virus.
+La transmission augmente dans les environnements intérieurs mal ventilés et lorsque la personne infectée tousse, éternue, parle ou chante. La période d'incubation est en moyenne de 5 à 6 jours, avec des extrêmes allant de deux à quatorze jours. La mortalité survient principalement chez les personnes âgées, l'âge moyen de décès par Covid-19 étant de 81 ans. 
           </p>
           <p class="font">
-           To fight against this virus, numerous vaccination campaigns have been carried out. From 2021, vaccines based on messenger RNA technology have been developed. This vaccination makes it possible to protect the population from serious forms of the disease but does not stop the spread of the virus. 
+           Pour lutter contre ce virus, de nombreuses campagnes de vaccination ont été menées. A partir de 2021, des vaccins basés sur la technologie de l'ARN messager ont été développés. Cette vaccination permet de protéger la population des formes graves de la maladie mais n'arrête pas la propagation du virus. 
           </p>
-          <h3><b><i> How to detect SARS-CoV-2 virus? </i></b></h3>   
+          <h3><b><i> Comment détecter le virus SARS-CoV-2 ? </i></b></h3>   
           <p class="font">
-          A diagnostic test for SARS-CoV-2 can be performed if there is a suspicion of coronavirus 2019 (Covid-19) disease on clinical examination. It can be performed by reverse transcriptase polymerase chain reaction tests for the detection of viral RNA (RT-PCR) or by ELISA antibody-based tests for the detection of virion proteins. 
-          </p>
-          <p class="font">
-          Antigenic test is another method to detect this virus. These lateral flow tests are based on the detection of molecules (antigens) of the virus. These tests appeared in the year 2020 with quite satisfactory results and relieving the biological laboratories.
+          Un test de diagnostic du SRAS-CoV-2 peut être effectué en cas de suspicion de maladie à coronavirus 2019 (Covid-19) à l'examen clinique. Il peut être réalisé par des tests d'amplification en chaîne par polymérase avec transcriptase inverse pour la détection de l'ARN viral (RT-PCR) ou par des tests ELISA à base d'anticorps pour la détection des protéines des virions. 
           </p>
           <p class="font">
-          Chest CT and chest X-ray, which are routine imaging tools for the diagnosis of pneumonia, have also been used for the detection of COVID cases. They are quick and relatively easy to perform as an adjunct to the clinical examination, without being a viral detection test per se. The use of these imaging technologies has led to the development of artificial intelligence methods for automatic virus detection from lung images.  
+          Le test antigénique est une autre méthode pour détecter ce virus. Ces tests à flux latéral sont basés sur la détection de molécules (antigènes) du virus. Ces tests sont apparus en 2020 avec des résultats tout à fait satisfaisants et soulageant les laboratoires de biologie.
           </p>
-          <h3><b><i> Artificial intelligence for detection ? </i></b></h3> 
           <p class="font">
-          Many studies on X-ray recognition based on deep learning have been carried out. In a review published in 2021 (Serena Low and al, 2021), 52 published studies based on the study of X-rays or CT scans between 2019 and 2021 were summarised with the algorithm used and the results obtained. 
+          Le scanner et la radiographie du thorax, qui sont des outils d'imagerie de routine pour le diagnostic de la pneumonie, ont également été utilisés pour la détection des cas de COVID. Ils sont rapides et relativement faciles à réaliser en complément de l'examen clinique, sans être un test de détection virale à proprement parler. L'utilisation de ces technologies d'imagerie a conduit au développement de méthodes d'intelligence artificielle pour la détection automatique de virus à partir d'images pulmonaires.  
+          </p>
+          <h3><b><i> L'intelligence artificielle pour la détection ? </i></b></h3> 
+          <p class="font">
+          De nombreuses études sur la reconnaissance de rayons X basées sur l'apprentissage profond ont été réalisées. Dans une revue publiée en 2021 (Serena Low et al, 2021), 52 études publiées basées sur l'étude de radiographies ou de tomodensitogrammes entre 2019 et 2021 ont été résumées avec l'algorithme utilisé et les résultats obtenus. 
           </p>  
-          <h3><b><i> Project </i></b></h3> 
+          <h3><b><i> Projet </i></b></h3> 
           <p class="font">
-          In our study, we carried out an in-depth study of the images, which allowed us to determine the presence of bias between the different sets of images. These biases have a strong influence on the performance of the model. A confirmation of these biases was performed using dedicated methods such as grad cam or generative adversarial networks (GAN) but also via the use of voluntarily biased data sets. Image pre-processing methods have been implemented to try to correct or at least mitigate these biases. The results obtained are satisfactory (accuracy: 0.88) but still require improvement. The aim of this work was to set up a study methodology to detect and correct biases within datasets that could have a negative impact on the behaviour of a deep learning model.           </p> 
+          Dans notre étude, nous avons réalisé une étude approfondie des images, ce qui nous a permis de déterminer la présence de biais entre les différents ensembles d'images. Ces biais ont une forte influence sur la performance du modèle. Une confirmation de ces biais a été effectuée à l'aide de méthodes dédiées telles que le grad cam ou les réseaux antagonistes  génératifs (GAN) mais aussi via l'utilisation de jeux de données volontairement biaisés. Des méthodes de prétraitement d'images ont été mises en œuvre pour tenter de corriger ou au moins d'atténuer ces biais. Les résultats obtenus sont satisfaisants (précision : 0,88) mais nécessitent encore des améliorations. L'objectif de ce travail était de mettre en place une méthodologie d'étude pour détecter et corriger les biais au sein de jeux de données qui pourraient avoir un impact négatif sur le comportement d'un modèle d'apprentissage profond.          
           <p class="font">
-           Dataset link <a href="https://www.kaggle.com/datasets/anasmohammedtahir/covidqu">COVID-QU-Ex Dataset</a>.
+           Lien jeu de données <a href="https://www.kaggle.com/datasets/anasmohammedtahir/covidqu">COVID-QU-Ex Dataset</a>.
 
           ''', unsafe_allow_html=True)
           
