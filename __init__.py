@@ -31,7 +31,7 @@ import streamlit.components.v1 as components
 import plotly.express as px
 def app():
     st.markdown("# PICTURE INTERACTIVE ANALYSIS V1")
-    predictor_model = load_model(os.path.join('data/Model_masks.hdf5'))
+    predictor_model = load_model(os.path.join('Model_masks.hdf5'))
 
     def Gradcam(url):
         img = keras.preprocessing.image.load_img(url, target_size = img_size) 
