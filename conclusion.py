@@ -23,14 +23,11 @@ def app():
     st.markdown('''
           <h2>Conclusion</h2>
           <p class="font">
-          In this study, the Gradcam deep learning model interpretability method,  was used to understand how the model classifies different image sets. This method confirmed the hypothesis that the dataset studied was biased. Indeed, we showed that the model on the basic images classified the images using non-targeted parts on the lungs. This result was confirmed using other methods (biased dataset and generative adversarial networks). The use of these methods, although recent, are only rarely found in the literature in relation to the recognition of radiographs in a COVID context.
-          </p>
+          Dans cette étude, la méthode d'interprétabilité du modèle d'apprentissage profond Gradcam, a été utilisée pour comprendre comment le modèle classe différents ensembles d'images. Cette méthode a confirmé l'hypothèse selon laquelle le jeu de données étudié était biaisé. En effet, nous avons montré que le modèle sur les images de base classait les images utilisant des parties non ciblées sur les poumons. Ce résultat a été confirmé en utilisant d'autres méthodes (jeu de données biaisé et réseaux adversariaux génératifs). L'utilisation de ces méthodes, bien que récente, n'est que rarement présente dans la littérature en relation avec la reconnaissance de radiographies dans un contexte COVID.</p>
           <p class="font">
-          In an attempt to correct for these biases, various pre-processing methods have been developed. Firstly, the application of a lung mask resulted in reduced model performance but more consistent interpretability. The application of a lung mask significantly reduced image bias, but brightness and shape bias were still present. To reduce the brightness bias, different image modification methods were tested (gamma correction, contrast streaking, CLAHE). In the end, the best result obtained was 0.88 accuracy after applying contrast streching with InceptionV3 model.
-          </p>
+          Pour tenter de corriger ces biais, diverses méthodes de prétraitement ont été développées. Tout d'abord, l'application d'un masque pulmonaire a entraîné une réduction des performances du modèle mais une interprétabilité plus cohérente. L'application d'un masque pulmonaire a réduit de manière significative le biais d'image, mais les biais de luminosité et de forme étaient toujours présents. Pour réduire le biais de luminosité, différentes méthodes de modification de l'image ont été testées (correction gamma, stries de contraste, CLAHE). Au final, le meilleur résultat obtenu a été une précision de 0,88 après l'application d'un streaking de contraste avec le modèle InceptionV3.</p>
           <p class="font">
-          The next objectives of this project would be to test other combinations of model and pre-processing methods as many methods present in the literature have not been tested. Furthermore, one of the other objectives would be to test this approach on other X-rays datasets to evaluate the reproducibility of the approach and the associated model.
-
+          Les prochains objectifs de ce projet seraient de tester d'autres combinaisons de modèles et de méthodes de prétraitement car de nombreuses méthodes présentes dans la littérature n'ont pas été testées. De plus, l'un des autres objectifs serait de tester cette approche sur d'autres jeux de données de rayons X afin d'évaluer la reproductibilité de l'approche et du modèle associé.
           </p>
           ''', unsafe_allow_html=True)
           
