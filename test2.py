@@ -73,7 +73,7 @@ def app():
         img5 = np. array(im_out,dtype='float64')
         img5 = np.expand_dims(img5, axis=-1)
         img5.shape
-        cv2.imwrite('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png',img5)
+        cv2.imwrite('data/images/savedImage.png',img5)
 
     def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
         grad_model = tf.keras.models.Model([model.inputs], [model.get_layer(last_conv_layer_name).output, model.output])
@@ -122,10 +122,10 @@ def app():
         st.write("")
     if selected_box == 'COVID':
 
-        path="C:/Users/natha/Downloads/COVID_Dataset/COVID-19"
+        path="https://github.com/natcebron/test/blob/main/pictures/COVID/"
         files=os.listdir(path)
         cov=random.choice(files)
-        url = f"C:/Users/natha/Downloads/COVID_Dataset/COVID-19/{cov}"
+        url = f"https://github.com/natcebron/test/blob/main/pictures/COVID/{cov}"
         image2 = plt.imread(url,format='png')
 
         col1, mid,col2 = st.columns([3,3,3])
@@ -147,20 +147,20 @@ def app():
                 
                 m_unet(os.path.join(url))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
+        prediction = predictor(os.path.join('data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
     if selected_box == 'Normal':
-        path="C:/Users/natha/Downloads/COVID_Dataset/Normal"
+        path="https://github.com/natcebron/test/blob/main/pictures/Normal"
         files=os.listdir(path)
         nor=random.choice(files)
-        url = f"C:/Users/natha/Downloads/COVID_Dataset/Normal/{nor}"
+        url = f"https://github.com/natcebron/test/blob/main/pictures/Normal/{nor}"
 
         image3 = plt.imread(url,format='png')
 
@@ -183,20 +183,20 @@ def app():
                 
                 m_unet(os.path.join(url))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
+        prediction = predictor(os.path.join('data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
     if selected_box == 'Non Normal':
-        path="C:/Users/natha/Downloads/COVID_Dataset/Non-COVID"
+        path="https://github.com/natcebron/test/blob/main/pictures/Non_COVID"
         files=os.listdir(path)
         nnorm=random.choice(files)
-        url = f"C:/Users/natha/Downloads/COVID_Dataset/Non-COVID/{nnorm}"
+        url = f"https://github.com/natcebron/test/blob/main/pictures/Non_COVID/{nnorm}"
 
         image4 = plt.imread(nnorm,format='png')
 
@@ -219,10 +219,10 @@ def app():
                 
                 m_unet(os.path.join(url))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
+        prediction = predictor(os.path.join('data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
