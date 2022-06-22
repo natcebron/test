@@ -115,7 +115,7 @@ def app():
 
     selected_box = st.selectbox(
     'Choose one of the following',
-    ('Choice','COVID','Normal','Non Normal')
+    ('Choice','COVID','Normal','Non COVID')
     )
    
     if selected_box == 'none':
@@ -192,7 +192,7 @@ def app():
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
-    if selected_box == 'Non Normal':
+    if selected_box == 'Non COVID':
         path="pictures/Non_COVID"
         files=os.listdir(path)
         nnorm=random.choice(files)
