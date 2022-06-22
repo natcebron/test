@@ -125,7 +125,7 @@ def app():
         path="pictures/COVID/"
         files=os.listdir(path)
         cov=random.choice(files)
-        url = f"https://raw.githubusercontent.com/natcebron/test/main/pictures/COVID/{cov}"
+        url = f"pictures/COVID/{cov}"
         image2 = plt.imread(url,format='png')
 
         col1, mid,col2 = st.columns([3,3,3])
@@ -157,7 +157,7 @@ def app():
         st.plotly_chart(fig)
 
     if selected_box == 'Normal':
-        path="https://github.com/natcebron/test/blob/main/pictures/Normal"
+        path="pictures/Normal"
         files=os.listdir(path)
         nor=random.choice(files)
         url = f"https://github.com/natcebron/test/blob/main/pictures/Normal/{nor}"
