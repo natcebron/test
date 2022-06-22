@@ -25,7 +25,8 @@ def app():
           <h2>MEMBRES : Damien BRUZZONE, Nathan CEBRON, Matthieu PELINGRE</h2>
           
           <h4><b><i> Qu'est-ce que le COVID-19 ? </i></b></h4>   
-          
+          <h4><b><i> Comment détecter le virus SARS-CoV-2 ? </i></b></h4>   
+
           <p class="font">
             Le COVID-19 est une maladie infectieuse causée par le virus du SRAS-Cov-2. Ce virus affecte l'homme et a un tropisme pour les poumons. 
           </p>
@@ -34,7 +35,7 @@ def app():
           </p>
           <p class="font">
             Cette infection peut être bénigne avec des symptômes très courants (fièvre, toux ou gêne respiratoire) mais elle peut aussi provoquer des formes plus sévères avec des cas de détresse respiratoire aiguë pouvant conduire au décès du patient. Le taux de formes asymptomatiques est estimé à environ 20% des personnes infectées. La transmission se fait par voie aérienne du virus.
-La transmission augmente dans les environnements intérieurs mal ventilés et lorsque la personne infectée tousse, éternue, parle ou chante. La période d'incubation est en moyenne de 5 à 6 jours, avec des extrêmes allant de deux à quatorze jours. La mortalité survient principalement chez les personnes âgées, l'âge moyen de décès par Covid-19 étant de 81 ans. 
+            La transmission augmente dans les environnements intérieurs mal ventilés et lorsque la personne infectée tousse, éternue, parle ou chante. La période d'incubation est en moyenne de 5 à 6 jours, avec des extrêmes allant de deux à quatorze jours. La mortalité survient principalement chez les personnes âgées, l'âge moyen de décès par Covid-19 étant de 81 ans. 
           </p>
           <p class="font">
            Pour lutter contre ce virus, de nombreuses campagnes de vaccination ont été menées. A partir de 2021, des vaccins basés sur la technologie de l'ARN messager ont été développés. Cette vaccination permet de protéger la population des formes graves de la maladie mais n'arrête pas la propagation du virus. 
