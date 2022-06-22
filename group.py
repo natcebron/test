@@ -47,7 +47,7 @@ def app():
     load_original_arr_COVID = loaded_arr_COVID.reshape(loaded_arr_COVID.shape[0], loaded_arr_COVID.shape[1] // 3, 3)
     load_original_arr_NC = loaded_arr_NC.reshape(loaded_arr_NC.shape[0], loaded_arr_NC.shape[1] // 3, 3)
 
-    st.markdown("<p class='font'> La première étape a consisté à comparer la distribution des pixels entre les différents ensembles d'images. Cette étude de distribution a été réalisée sur une "image moyenne" créée à partir de toutes les images d'un ensemble. </p>", unsafe_allow_html=True)
+    st.markdown("<p class='font'> La première étape a consisté à comparer la distribution des pixels entre les différents ensembles d'images. Cette étude de distribution a été réalisée sur une image moyenne créée à partir de toutes les images d'un ensemble. </p>", unsafe_allow_html=True)
 
     fig = plt.figure(figsize=(20, 7))
     plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'text.color':'white','xtick.color':'white','ytick.color':'white','axes.facecolor':'#0e1117','axes.edgecolor':'#0e1117'})
