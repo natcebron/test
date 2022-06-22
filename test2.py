@@ -18,7 +18,7 @@ import seaborn as sns
 import cv2
 import numpy as np
 import pickle
-import tensorflow as tf
+import tensorflow
 from tensorflow.keras import layers
 from tensorflow.keras import models,utils
 import pandas as pd
