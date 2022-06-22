@@ -175,7 +175,7 @@ def app():
                 st.pyplot(fig2)
 
         fig3 = plt.figure(figsize=(12, 12))
-        unet = load_model(os.path.join('data/UNET.hdf5'))
+        unet = load_model(os.path.join('UNET.hdf5'))
 
         m_unet(os.path.join('data/images/foo.png'))
             
