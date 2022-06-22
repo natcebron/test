@@ -25,7 +25,6 @@ def app():
           <h2>MEMBRES : Damien BRUZZONE, Nathan CEBRON, Matthieu PELINGRE</h2>
           
           <h4><b><i> Qu'est-ce que le COVID-19 ? </i></b></h4>   
-          <h4><b><i> Comment détecter le virus SARS-CoV-2 ? </i></b></h4>   
 
           <p class="font">
             Le COVID-19 est une maladie infectieuse causée par le virus du SRAS-Cov-2. Ce virus affecte l'homme et a un tropisme pour les poumons. 
