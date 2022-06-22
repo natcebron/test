@@ -22,10 +22,10 @@ def app():
     local_css(os.path.join(currentdir, "style.css"))
     #Préparation de la page
     st.markdown(""" <style> .font {font-size:20px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
-    st.markdown("# BIAS DETERMINATION")
+    st.markdown("# DETERMINATION DES BIAIS")
 
-    st.markdown('## FIRST RESULT')
-    st.markdown('<p class="font"> This section is dedicated to the determination of bias. In a first step, a model based on transfer learning was tested on the raw radiographs. We obtain the following results:  </p>', unsafe_allow_html=True)
+    st.markdown('## PREMIER RESULTAT')
+    st.markdown("<p class="font"> Cette section est consacrée à la détermination du biais. Dans un premier temps, un modèle basé sur l'apprentissage par transfert a été testé sur les radiographies brutes. Nous obtenons les résultats suivants :  </p>", unsafe_allow_html=True)
 
     # initialize list of lists
     data = [['COVID', 0.99,0.90,0.94], ['Normal',0.89,0.92,0.90], ['Non_COVID',0.87,0.92,0.89],['Average',0.91,0.91,0.91]]
@@ -46,19 +46,19 @@ def app():
     with col3:
         st.write(' ')
 
-    st.markdown('<p class="font"> The results obtained in this first model are very satisfactory, particularly for the COVID group, with precision values of 0.99. To check that the model is not biased, we performed a Grad-CAM study on the true positive and false negative images for each group.  </p>', unsafe_allow_html=True)
+    st.markdown("<p class="font"> Les résultats obtenus dans ce premier modèle sont très satisfaisants, notamment pour le groupe COVID, avec des valeurs de précision de 0,99. Pour vérifier que le modèle n'est pas biaisé, nous avons réalisé une étude Grad-CAM sur les images vraies positives et fausses négatives pour chaque groupe.  </p>", unsafe_allow_html=True)
 
     st.markdown('## GRAD-CAM')
     image = Image.open(os.path.join(currentdir, 'data/Gradcam.png'))
     new_image = image.resize((1400, 1000))
 
-    st.markdown('<p class="font"> Grad-Cam is a method published in 2016 which aims to find out which parts of the image have been used by the model to classify the images. The result is displayed as a heatmap.  </p>', unsafe_allow_html=True)
+    st.markdown("<p class="font"> Grad-Cam est une méthode publiée en 2016 qui vise à savoir quelles parties de l'image ont été utilisées par le modèle pour classer les images. Le résultat est affiché sous la forme d'une carte thermique.  </p>", unsafe_allow_html=True)
 
     st.image(image,width=1000)
-    st.markdown('<p class="font"> Using this method we obtain very conclusive results that our model is biased. Indeed, we can see that the areas mostly used by the model (yellow) do not correspond to the lungs but to external parts of the image. This result is even more obvious for the COVID group where we can see that these are always the same areas found. This result explains our accuracy for this very high group.   </p>', unsafe_allow_html=True)
+    st.markdown("<p class="font"> En utilisant cette méthode nous obtenons des résultats très concluants que notre modèle est biaisé. En effet, nous pouvons voir que les zones les plus utilisées par le modèle (en jaune) ne correspondent pas aux poumons mais à des parties externes de l'image. Ce résultat est encore plus évident pour le groupe COVID où l'on constate que ce sont toujours les mêmes zones qui sont trouvées. Ce résultat explique notre précision pour ce groupe très élevé. </p>", unsafe_allow_html=True)
 
 
-    st.markdown('## BIASED DATASET')
+    st.markdown('## DATASETS BIAISES')
 
     st.markdown('## GANS')
 
