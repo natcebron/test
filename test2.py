@@ -139,7 +139,7 @@ def app():
         with mid:
                 fig2 = plt.figure(figsize=(12, 12))
                 st.header("Gradcam before correction")
-                plt.imshow(Gradcam(f"https://raw.githubusercontent.com/natcebron/test/main/pictures/COVID/{cov}"))
+                plt.imshow(Gradcam(url))
                 st.pyplot(fig2)
  
         with col2:
