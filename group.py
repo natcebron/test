@@ -169,7 +169,7 @@ def app():
     plt.legend();
     plt.show()
     st.pyplot(fig5)
-    st.markdown("<p class='font'>Les courbes de densité des 3 ensembles sont similaires avec un pic plus important pour le groupe Normal. </p>', unsafe_allow_html=True)
+    st.markdown("<p class='font'>Les courbes de densité des 3 ensembles sont similaires avec un pic plus important pour le groupe Normal. </p>", unsafe_allow_html=True)
 
 ########################
 # OUTLIERS DETERMINATION
