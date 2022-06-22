@@ -111,7 +111,7 @@ def app():
         test.columns = ['name', 'values']
         return test
 
-    st.markdown("# PICTURE INTERACTIVE ANALYSIS V2")
+    st.markdown("# IMAGE ANALYSE INTERACTIVE V2")
 
     selected_box = st.selectbox(
     'Choose one of the following',
@@ -152,7 +152,7 @@ def app():
 
         prediction = predictor(os.path.join('data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
-        fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
+        fig = px.bar(prediction,x = "values",y = "name",title = "Résultat de la prédiction",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
@@ -188,7 +188,7 @@ def app():
 
         prediction = predictor(os.path.join('data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
-        fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
+        fig = px.bar(prediction,x = "values",y = "name",title = "Résultat de la prédiction",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
@@ -224,7 +224,7 @@ def app():
 
         prediction = predictor(os.path.join('data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
-        fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
+        fig = px.bar(prediction,x = "values",y = "name",title = "Résultat de la prédiction",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
