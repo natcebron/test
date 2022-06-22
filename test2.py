@@ -122,7 +122,7 @@ def app():
         st.write("")
     if selected_box == 'COVID':
 
-        path="https://github.com/natcebron/test/blob/main/pictures/COVID/"
+        path="pictures/COVID/"
         files=os.listdir(path)
         cov=random.choice(files)
         url = f"https://github.com/natcebron/test/blob/main/pictures/COVID/{cov}"
