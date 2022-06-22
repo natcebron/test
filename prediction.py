@@ -39,7 +39,7 @@ def app():
     local_css(os.path.join(currentdir, "style.css"))
     #Préparation de la page
     st.markdown(""" <style> .font {font-size:20px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
-    st.markdown("# X-RAYS PREDICTION")
+    st.markdown("# PRÉDICTION DES RADIOGRAPHIES")
     dog_breeds_category_path = os.path.join(currentdir, 'data/test.pkl')
 
     predictor_model = load_model(os.path.join(currentdir, 'Model_masks.hdf5'))
@@ -96,14 +96,14 @@ def app():
             display_image = Image.open(uploaded_file)
             col1, col2 = st.columns([1,1])
             with col1:
-                st.image(display_image,width=400,use_column_width='never',caption='Upload picture')
+                st.image(display_image,width=400,use_column_width='never',caption='Image téléchargé')
 
 
             m_unet(os.path.join('data/images',uploaded_file.name))
             display_image2 = Image.open('data/images/savedImage.png')
 
             with col2:
-                st.image(display_image2,width=400,use_column_width='never',caption='Pre-processed picture')
+                st.image(display_image2,width=400,use_column_width='never',caption='Image prétraitée')
 
 
             prediction = predictor(os.path.join('data/images',uploaded_file.name))
