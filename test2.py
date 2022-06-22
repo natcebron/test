@@ -198,7 +198,7 @@ def app():
         nnorm=random.choice(files)
         url = f"pictures/Non_COVID/{nnorm}"
 
-        image4 = plt.imread(nnorm,format='png')
+        image4 = plt.imread(url,format='png')
 
         col1, mid,col2 = st.columns([3,3,3])
         with col1:
