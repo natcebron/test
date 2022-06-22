@@ -88,9 +88,9 @@ def app():
         pooled_grads = tensorflow.reduce_mean(grads, axis=(0, 1, 2))
 
         last_conv_layer_output = last_conv_layer_output[0]
-        heatmap = last_conv_layer_output @ pooled_grads[..., tf.newaxis]
+        heatmap = last_conv_layer_output @ pooled_grads[..., tensorflow.newaxis]
         heatmap = tensorflow.squeeze(heatmap)
-        heatmap = tensorflow.maximum(heatmap, 0) / tf.math.reduce_max(heatmap)
+        heatmap = tensorflow.maximum(heatmap, 0) / tensorflow.math.reduce_max(heatmap)
         return heatmap.numpy()  
     model_builder = tensorflow.keras.applications.xception.Xception
     img_size = (299, 299)
