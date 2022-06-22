@@ -32,8 +32,8 @@ import plotly.express as px
 import random 
 
 def app():
-    predictor_model = load_model(os.path.join('Model_masks.hdf5'))
-    unet = load_model(os.path.join('UNET.hdf5'))
+    predictor_model = load_model(os.path.join('data/Model_masks.hdf5'))
+    unet = load_model(os.path.join('data/UNET.hdf5'))
     def Gradcam(url):
         img = keras.preprocessing.image.load_img(url, target_size = img_size) 
         array = keras.preprocessing.image.img_to_array(img) 
@@ -73,7 +73,7 @@ def app():
         img5 = np. array(im_out,dtype='float64')
         img5 = np.expand_dims(img5, axis=-1)
         img5.shape
-        cv2.imwrite('data/images/savedImage.png',img5)
+        cv2.imwrite('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png',img5)
 
     def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
         grad_model = tf.keras.models.Model([model.inputs], [model.get_layer(last_conv_layer_name).output, model.output])
@@ -115,14 +115,18 @@ def app():
 
     selected_box = st.selectbox(
     'Choose one of the following',
-    ('COVID','Normal','Non Normal')
+    ('Choice','COVID','Normal','Non Normal')
     )
    
+    if selected_box == 'none':
+        st.write("")
     if selected_box == 'COVID':
-        os.chdir("pictures/COVID")
-        files=os.listdir("pictures/Non_COVID")
+
+        path="C:/Users/natha/Downloads/COVID_Dataset/COVID-19"
+        files=os.listdir(path)
         cov=random.choice(files)
-        image2 = plt.imread(f"pictures/COVID/"{cov},format='png')
+        url = f"C:/Users/natha/Downloads/COVID_Dataset/COVID-19/{cov}"
+        image2 = plt.imread(url,format='png')
 
         col1, mid,col2 = st.columns([3,3,3])
         with col1:
@@ -135,29 +139,30 @@ def app():
         with mid:
                 fig2 = plt.figure(figsize=(12, 12))
                 st.header("Gradcam before correction")
-                plt.imshow(Gradcam(cov))
+                plt.imshow(Gradcam(url))
                 st.pyplot(fig2)
  
         with col2:
                 fig3 = plt.figure(figsize=(12, 12))
                 
-                m_unet(os.path.join(cov))
+                m_unet(os.path.join(url))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('savedImage.png'))
+        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
     if selected_box == 'Normal':
-        path="pictures/Normal"
-        os.chdir("pictures/Normal")
+        path="C:/Users/natha/Downloads/COVID_Dataset/Normal"
         files=os.listdir(path)
         nor=random.choice(files)
-        image3 = plt.imread(nor,format='png')
+        url = f"C:/Users/natha/Downloads/COVID_Dataset/Normal/{nor}"
+
+        image3 = plt.imread(url,format='png')
 
         col1, mid,col2 = st.columns([3,3,3])
         with col1:
@@ -170,28 +175,29 @@ def app():
         with mid:
                 fig2 = plt.figure(figsize=(12, 12))
                 st.header("Gradcam before correction")
-                plt.imshow(Gradcam(nor))
+                plt.imshow(Gradcam(url))
                 st.pyplot(fig2)
  
         with col2:
                 fig3 = plt.figure(figsize=(12, 12))
                 
-                m_unet(os.path.join(nor))
+                m_unet(os.path.join(url))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('data/images/savedImage.png'))
+        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
     if selected_box == 'Non Normal':
-        path="pictures/Non_COVID"
-        os.chdir("pictures/Non_COVID")
+        path="C:/Users/natha/Downloads/COVID_Dataset/Non-COVID"
         files=os.listdir(path)
         nnorm=random.choice(files)
+        url = f"C:/Users/natha/Downloads/COVID_Dataset/Non-COVID/{nnorm}"
+
         image4 = plt.imread(nnorm,format='png')
 
         col1, mid,col2 = st.columns([3,3,3])
@@ -205,24 +211,23 @@ def app():
         with mid:
                 fig2 = plt.figure(figsize=(12, 12))
                 st.header("Gradcam before correction")
-                plt.imshow(Gradcam(nnorm))
+                plt.imshow(Gradcam(url))
                 st.pyplot(fig2)
  
         with col2:
                 fig3 = plt.figure(figsize=(12, 12))
                 
-                m_unet(os.path.join(nnorm))
+                m_unet(os.path.join(url))
                 st.header("Gradcam after correction")
-                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
+                plt.imshow(Gradcam(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png')))
                 st.pyplot(fig3)
 
-        prediction = predictor(os.path.join('data/images/savedImage.png'))
+        prediction = predictor(os.path.join('C:/Users/natha/DeMACIA-RX-main/Streamlit/data/images/savedImage.png'))
         prediction = prediction.round(decimals = 2)
         fig = px.bar(prediction,x = "values",y = "name",title = "Prediction result",color="name",orientation = 'h',text='values')
         fig.update_layout(width=900,height=600)
         st.plotly_chart(fig)
 
-    os.chdir("C:/Users/natha/DeMACIA-RX-main/Streamlit")
 
 if __name__ == "__main__":
     app()

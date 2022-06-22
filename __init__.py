@@ -115,8 +115,39 @@ def app():
     imageCarouselComponent = components.declare_component("image-carousel-component", path="frontend/public")
 
     imageUrls = [
-        "https://raw.githubusercontent.com/natcebron/test/main/data/covid_1.png"
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_1.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_10.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_11.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_12.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_13.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_14.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_15.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_16.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_17.png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/COVID/covid_18.png?raw=true",
 
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(28).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(44).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(45).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(46).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(47).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(48).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(49).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(5).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(51).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Non_COVID/Non_COVID%20(52).png?raw=true",
+
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(1).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(10).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(11).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(12).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(13).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(14).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(15).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(16).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(17).png?raw=true",
+        "https://github.com/natcebron/test/blob/main/pictures/Normal/Normal%20(18).png?raw=true",
+     
     ]
     selectedImageUrl = imageCarouselComponent(imageUrls=imageUrls, height=200)
     
@@ -124,6 +155,9 @@ def app():
     if selectedImageUrl is not None:
         fig1 = plt.figure()
         image2 = plt.imread(selectedImageUrl,format='png')
+        test = selectedImageUrl.split("/")
+        st.header("Theoric group:",test)
+        st.subheader(test[8])
         cv2.imwrite('data/images/picture.png',image2)
         plt.imshow(image2, cmap='gray')
         plt.axis('off')
