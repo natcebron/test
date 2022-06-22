@@ -194,7 +194,7 @@ def app():
     plt.ylabel('Ecart-type');
 
     st.pyplot(fig6)
-    st.markdown("<p class='font'>Le groupe COVID présente un grand nombre d'aberrations (340) par rapport aux ensembles Normal et Non-COVID qui présentent respectivement 4 et 12 aberrations. La présence de ces valeurs aberrantes peut avoir un impact sur la performance du modèle et doit être prise en compte.  </p>', unsafe_allow_html=True)
+    st.markdown("<p class='font'>Le groupe COVID présente un grand nombre d'aberrations (340) par rapport aux ensembles Normal et Non-COVID qui présentent respectivement 4 et 12 aberrations. La présence de ces valeurs aberrantes peut avoir un impact sur la performance du modèle et doit être prise en compte.  </p>", unsafe_allow_html=True)
 
     st.markdown('## Forme des poumons ??')
 
