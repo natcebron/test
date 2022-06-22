@@ -125,7 +125,7 @@ def app():
         path="pictures/COVID/"
         files=os.listdir(path)
         cov=random.choice(files)
-        url = f"https://github.com/natcebron/test/blob/main/pictures/COVID/{cov}?raw=true"
+        url = f"https://raw.githubusercontent.com/natcebron/test/main/pictures/COVID/{cov}"
         image2 = plt.imread(url,format='png')
 
         col1, mid,col2 = st.columns([3,3,3])
