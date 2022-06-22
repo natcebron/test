@@ -21,11 +21,13 @@ def app():
                """, unsafe_allow_html=True)
   
     st.markdown('''
-          <h2>DEVELOPPEMENT D'UN MODELE DE DEEP LEARNING POUR LA CLASSIFICATION DE RADIOGRAPHIES DANS UN CONTEXTE COVID</h2>
-          <h3>MEMBRES : Damien BRUZZONE, Nathan CEBRON, Matthieu PELINGRE</h3>
+          <h1>DEVELOPPEMENT D'UN MODELE DE DEEP LEARNING POUR LA CLASSIFICATION DE RADIOGRAPHIES DANS UN CONTEXTE COVID</h1>
+          <h2>MEMBRES : Damien BRUZZONE, Nathan CEBRON, Matthieu PELINGRE</h2>
 
           <h3>A PROPOS DU COVID</h3>
+          
           <h4><b><i> Qu'est-ce que le COVID-19 ? </i></b></h4>   
+          
           <p class="font">
             Le COVID-19 est une maladie infectieuse causée par le virus du SRAS-Cov-2. Ce virus affecte l'homme et a un tropisme pour les poumons. 
           </p>
