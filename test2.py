@@ -111,7 +111,7 @@ def app():
         test.columns = ['name', 'values']
         return test
 
-    st.markdown("# IMAGE ANALYSE INTERACTIVE V2")
+    st.markdown("# IMAGE ANALYSE INTERACTIVE")
 
     selected_box = st.selectbox(
     'Choose one of the following',
@@ -133,12 +133,12 @@ def app():
             fig1 = plt.figure()
             plt.imshow(image2, cmap='gray')
             plt.axis('off')
-            st.header("Upload picture")
+            st.subheader("Upload picture")
             st.pyplot(fig1,use_column_width=True)
 
         with mid:
                 fig2 = plt.figure(figsize=(12, 12))
-                st.header("Gradcam before correction")
+                st.subheader("Gradcam before correction")
                 plt.imshow(Gradcam(url))
                 st.pyplot(fig2)
  
@@ -146,7 +146,7 @@ def app():
                 fig3 = plt.figure(figsize=(12, 12))
                 
                 m_unet(os.path.join(url))
-                st.header("Gradcam after correction")
+                st.subheader("Gradcam after correction")
                 plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
                 st.pyplot(fig3)
 
