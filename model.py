@@ -37,7 +37,7 @@ def app():
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  
     local_css(os.path.join(currentdir, "style.css"))
     #Préparation de la page
-    st.markdown(""" <style> .font {font-size:18px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
+    st.markdown(""" <style> .font {font-size:16px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
     st.markdown("# MÉTHODES DE PRÉTRAITEMENT")
     st.markdown("<p class='font'> Pour tenter d'éliminer les biais, diverses méthodes de prétraitement ont été testées. Nous avons testé l'application de masques en utilisant un modèle UNET, un filtre gaussien : Une méthode de flou de l'image pour réduire le bruit de l'image, ajuster le gamma : Une méthode de correction pour contrôler la luminosité, l'égalisation d'histogramme adaptative limitée par le contraste (CLAHE), une technique pour modifier l'image en améliorant le contraste. La dernière méthode est un mélange de CLAHE et d'un filtre de transformation. </p>", unsafe_allow_html=True)
 
