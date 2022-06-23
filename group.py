@@ -72,7 +72,7 @@ def app():
 # PIXEL METRICS : MEAN AND STANDARD DEVIATION
 #############################################
 
-    st.markdown('## Métrique des pixels (moyenne et écart-type)')
+    st.markdown('## Métrique des pixels (moyenne)')
     st.markdown("<p class='font'>Pour aller plus loin, une étude plus détaillée des pixels a été réalisée, incluant une détermination des métriques de la moyenne des pixels et de l'écart-type des pixels. Ces valeurs ont été déterminées sur chaque image de chaque ensemble.  </p>", unsafe_allow_html=True)
 
     df = pd.read_csv(os.path.join(currentdir, 'data/Mean and std analysis.csv'))
@@ -107,19 +107,6 @@ def app():
     fig3 = plt.figure(figsize=(20, 7))
     plt.rcParams.update({'text.color': "white",'axes.labelcolor': "white",'text.color':'white','xtick.color':'white','ytick.color':'white','axes.facecolor':'#0e1117','axes.edgecolor':'#0e1117'})
     fig3.set_facecolor("#0e1117")
-
-    
-#create your own color array
-    my_colors = ["green", "red", "blue"]
-  
-# add color array to set_palette
-# function of seaborn
-    sns.set_palette( my_colors )
-  
-    sns.boxplot(x=df['std'],y=df['group'], data=df)
-    plt.title("Ecart-type",fontsize = 20)
-    st.pyplot(fig3)
-    st.markdown("<p class='font'> L'étude de la variable pixel de l'écart-type a été réalisée. Cette métrique a été représentée sous forme de boxplot. La valeur de l'écart-type semble être plus faible dans le groupe COVID avec une valeur moyenne de 55 par rapport au groupe Normal qui a une valeur de 63. Le groupe Non-COVID se situe entre ces deux ensembles avec une valeur de 58. Les images du groupe COVID auraient donc une variabilité des pixels plus faible.   </p>", unsafe_allow_html=True)
 
 
     st.markdown('## Forme des poumons')
