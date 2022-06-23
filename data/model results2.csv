@@ -1,9 +1,10 @@
 ﻿preprocessing method;Average precision;Average recall;Average F1-score
 Base;0.91;0.91;0.91
 Masks;0.88;0.88;0.88
-M + gamma correction;0.88;0.87;0.87
-M + CLAHE + gamma correction;0.33;0.34;0.33
-M + CLAHE + gaussian_filter;0.72;0.71;0.71
-M + CLAHE + Morphology;0.80;0.78;0.78
-M + contrast_stretch;0.88;0.88;0.88
-M + gaussian filter;0.75;0.75;0.75
+Masks +gamma correction;0.88;0.87;0.87
+Masks +CLAHE + gamma correction;0.33;0.34;0.33
+Masks +CLAHE + gaussian_filter;0.72;0.71;0.71
+Masks +CLAHE + Morphology;0.80;0.78;0.78
+Masks +contrast_stretch;0.88;0.88;0.88
+Masks +gaussian filter;0.75;0.75;0.75
+Masks +Adjust Brightness;0.89;0.89;0.89
