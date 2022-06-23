@@ -123,5 +123,12 @@ def app():
 
 
     st.markdown('## Forme des poumons ??')
+    image = Image.open(os.path.join(currentdir, 'data/forme.png'))
+   
+    col1, mid, col2 = st.columns([2,2,2])
+    with mid:
+        st.image(image, width=300)
+
+    st.markdown("<p class='font'> Les images présentes dans notre jeu de données sont toutes de dimension 256 pixels en hauteur et 256 pixels en largeur. </p>", unsafe_allow_html=True)
 
     return None
