@@ -33,8 +33,7 @@ MENU = {
     "Model" : model,
     "Prediction" : prediction,
     "Conclusion" : conclusion,
-    "test":__init__, 
-    "test2":test2       
+    "Interactif":test2       
 }
 
 
