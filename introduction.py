@@ -22,7 +22,6 @@ def app():
   
     st.markdown('''
           <h1>DEVELOPPEMENT D'UN MODELE DE DEEP LEARNING POUR LA CLASSIFICATION DE RADIOGRAPHIES DANS UN CONTEXTE COVID</h1>
-          <h2>MEMBRES : Damien BRUZZONE, Nathan CEBRON, Matthieu PELINGRE</h2>
           
           <h4><b><i> Qu'est-ce que le COVID-19 ? </i></b></h4>   
 
