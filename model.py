@@ -45,6 +45,8 @@ def app():
     st.image(image,width=1200)
     st.markdown("# RÉSULTATS DES MODÈLES")
     st.markdown("<p class='font'>  Plusieurs modèles d'application de ces transformations ont été testés. Le modèle de base utilisé est Inceptionv3, qui est un modèle largement utilisé dans le domaine de l'imagerie radiologique.</p>", unsafe_allow_html=True)
+    st.markdown("<p class='font'>  Paramètres modèles : InceptionV3, epochs = 30, loss_function = sparse_categorical_crossentropy, optimizer = Adam, </p>", unsafe_allow_html=True)
+
     unet = load_model(os.path.join(currentdir, 'UNET.hdf5'))
 
     df = pd.read_csv(os.path.join(currentdir, 'data/model results.csv'),sep=";")
