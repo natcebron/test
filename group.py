@@ -125,6 +125,6 @@ def app():
     st.markdown('## Forme des poumons')
     image = Image.open(os.path.join(currentdir, 'data/forme.png'))
    
-    col1, mid, col2 = st.columns([2,2,2])
+    col1, mid, col2 = st.columns([0.5,2,2])
     with mid:
         st.image(image, width=512)
