@@ -15,7 +15,7 @@ def app():
                     marging-top: 0 rem;
                   }} 
                   .font {{
-                    font-size:18px ; font-family: 'Arial'; color: #FFFFFF;}} 
+                    font-size:16px ; font-family: 'Arial'; color: #FFFFFF;}} 
                
                 </style>
                """, unsafe_allow_html=True)
