@@ -122,12 +122,12 @@ def app():
     st.markdown("<p class='font'> L'étude de la variable pixel de l'écart-type a été réalisée. Cette métrique a été représentée sous forme de boxplot. La valeur de l'écart-type semble être plus faible dans le groupe COVID avec une valeur moyenne de 55 par rapport au groupe Normal qui a une valeur de 63. Le groupe Non-COVID se situe entre ces deux ensembles avec une valeur de 58. Les images du groupe COVID auraient donc une variabilité des pixels plus faible.   </p>", unsafe_allow_html=True)
 
 
-    st.markdown('## Forme des poumons ??')
+    st.markdown('## Forme des poumons')
     image = Image.open(os.path.join(currentdir, 'data/forme.png'))
    
     col1, mid, col2 = st.columns([2,2,2])
     with mid:
-        st.image(image, width=300)
+        st.image(image, width=1200)
 
     st.markdown("<p class='font'> Les images présentes dans notre jeu de données sont toutes de dimension 256 pixels en hauteur et 256 pixels en largeur. </p>", unsafe_allow_html=True)
 
