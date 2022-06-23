@@ -29,6 +29,8 @@ def app():
 
     # initialize list of lists
     data = [['COVID', 0.99,0.90,0.94], ['Normal',0.89,0.92,0.90], ['Non_COVID',0.87,0.92,0.89],['Average',0.91,0.91,0.91]]
+    st.markdown("<p class='font'> Paramètres modèles : InceptionV3, epochs = 30, loss_function = sparse_categorical_crossentropy, optimizer = Adam </p>", unsafe_allow_html=True)
+
  
     # Create the pandas DataFrame
     df = pd.DataFrame(data, columns=['Group', 'Precision','Recall','F1-score'])
