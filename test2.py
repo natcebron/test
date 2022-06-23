@@ -133,12 +133,12 @@ def app():
             fig1 = plt.figure()
             plt.imshow(image2, cmap='gray')
             plt.axis('off')
-            st.subheader("Upload picture")
+            st.subheader("Image de base")
             st.pyplot(fig1,use_column_width=True)
 
         with mid:
                 fig2 = plt.figure(figsize=(12, 12))
-                st.subheader("Gradcam before correction")
+                st.subheader("Gradcam avant correction")
                 plt.imshow(Gradcam(url))
                 st.pyplot(fig2)
  
@@ -146,7 +146,7 @@ def app():
                 fig3 = plt.figure(figsize=(12, 12))
                 
                 m_unet(os.path.join(url))
-                st.subheader("Gradcam after correction")
+                st.subheader("Gradcam après correction")
                 plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
                 st.pyplot(fig3)
 
