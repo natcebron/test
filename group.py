@@ -25,7 +25,7 @@ def app():
     #Préparation de la page
     st.markdown(""" <style> .font {font-size:16px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
     st.markdown("# COMPARAISON DES GROUPES EN FONCTION DES CARACTÉRISTIQUES DE L'IMAGE")
-    st.markdown('<p class="font"> Before the development of a deep learning model, a comparison of the different sets of images was carried out. To do this, a study of the characteristics of the images was performed). </p>', unsafe_allow_html=True)
+    st.markdown("<p class='font'> Avant le développement d'un modèle d'apprentissage profond, une comparaison des différents ensembles d'images a été effectuée. Pour ce faire, une étude des caractéristiques des images a été réalisée). </p>", unsafe_allow_html=True)
     sns.set_theme(style="white", palette=None)
 
 ####################
