@@ -127,4 +127,4 @@ def app():
    
     col1, mid, col2 = st.columns([0.5,2,0.5])
     with mid:
-        st.image(image, width=512)
+        st.image(image, width=700)
