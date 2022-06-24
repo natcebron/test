@@ -110,8 +110,12 @@ def app():
 
 
     st.markdown('## Forme des poumons')
+    st.markdown("<p class='font'>La Forme des poumons est un facteur pouvant également avoir un impacte sur la prédiction. Nous avons donc étudié la forme des poumons à l'aide des masques fournis avec le dataset COVID-QU-Ex. En affichant les images moyennes des différentes classes de l'ensemble de données et leur écarts types, de grandes disparités peuvent également être observées.</p>", unsafe_allow_html=True)
+
     image = Image.open(os.path.join(currentdir, 'data/forme.png'))
    
     col1, mid, col2 = st.columns([0.5,2,0.5])
     with mid:
         st.image(image, width=700)
+    st.markdown("<p class='font'>La classe Normal semble la plus définie, tandis que la classe COVID-19 semble la plus dispersée. Les formes sont également très différentes : l'image moyenne de COVID-19 semble assez compacte, alors que celle de la classe Non-COVID semble plus allongée. Ces disparités pourraient également être déterminantes pour la discrimination entre les différentes classes dans la prédiction et donc être une source de biais. On peut par exemple imaginer qu'une faible variation de forme sur la classe Normal faussera plus aisément la prédiction pour cette classe. D'autre part, des poumons effilés seront sans doute plus souvent attribués à la classe Non-COVID tandis que des poumons plus trapus seront attribués plus souvent à la classe COVID-19.</p>", unsafe_allow_html=True)
+
