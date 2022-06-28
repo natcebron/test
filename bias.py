@@ -69,7 +69,7 @@ def app():
     img = Image.open(os.path.join(currentdir, 'data/graph1a.png'))
     img2 = Image.open(os.path.join(currentdir, 'data/graph1b.png'))
 
-    col1, col2 = st.columns(3)
+    col1, col2 = st.columns(2)
 
     with col1:
         st.image(img,width=1000)
