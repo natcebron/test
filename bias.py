@@ -43,7 +43,7 @@ def app():
         st.write(' ')
 
     with col2:
-        st.dataframe(data=df)
+        st.dataframe(data=df,width=100)
 
     with col3:
         st.write(' ')
