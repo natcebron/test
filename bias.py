@@ -94,7 +94,7 @@ def app():
 
     st.image(img, width=700)
     
-    img = Image.open(os.path.join(currentdir,"data/test2.PNG"))
+    img = Image.open(os.path.join(currentdir,"data/test2.png"))
     st.image(img, width=700)
 
     st.markdown("<p class='font'> Comme nous avons pu le voir précédemment, des divergences liées à la forme des poumons entre les différentes classes pourraient induire des biais lors de l’entraînement de nos modèles. Nous avons d’ailleurs pu le constater sur un modèle DenseNet201 (accuracy globale : 92%) entraîné par fine-tuning, en appliquant des zooms et dézooms sur l’ensemble de test :</p>", unsafe_allow_html=True)
