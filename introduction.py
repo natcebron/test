@@ -1,6 +1,14 @@
-import streamlit as st 
-import os
+
+import streamlit as st
+import streamlit.components.v1 as components
+import os                      #+Deployment
 import inspect                 #+Deployment
+#importing all the necessary libraries
+import pandas as pd
+import numpy as np                     
+import matplotlib.pyplot as plt
+import os
+import random               #+Deployment
 
 def local_css(file_name):
     with open(file_name) as f:
