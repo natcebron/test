@@ -48,8 +48,6 @@ st.sidebar.markdown("### Team members:")
 for member in config.TEAM_MEMBERS:
         st.sidebar.markdown(member.sidebar_markdown(), unsafe_allow_html=True)
 
-st.sidebar.markdown("### Mentor:")
-st.sidebar.markdown('Gaspard GRIMM', unsafe_allow_html=True)
+st.sidebar.markdown("### Mentor:Gaspard GRIMM")
         
-st.sidebar.markdown("### Promotion:")
-st.sidebar.markdown('DS AVRIL 2022', unsafe_allow_html=True)
+st.sidebar.markdown("### Promotion:DS AVRIL 2022")
