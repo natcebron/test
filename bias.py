@@ -93,7 +93,7 @@ def app():
     st.markdown("- **Fine-tuning** :  l’effet dépend du modèle et des classes (ResNet50 et DenseNet201 : **diminue** l’impact sur la classe Normal et l’augmente sur la classe COVID-19 ; légère augmentation globale pour InceptionV3)")
     img = Image.open(os.path.join(currentdir,"data/table2.png"))
 
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns([0.7,4,0.5])
 
     with col1:
         st.write(' ')
@@ -112,7 +112,7 @@ def app():
     st.markdown("<p class='font'>Comme nous avons pu le voir précédemment, des divergences liées à la forme des poumons entre les différentes classes pourraient induire des biais lors de l’entraînement de nos modèles. Nous avons d’ailleurs pu le constater sur un modèle DenseNet201 (accuracy globale : 92%) entraîné par fine-tuning, en appliquant des zooms et dézooms sur l’ensemble de test : </p>", unsafe_allow_html=True)
     
     img = Image.open(os.path.join(currentdir,"data/table3.png"))
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns([0.7,4,0.5])
 
     with col1:
         st.write(' ')
@@ -135,7 +135,7 @@ def app():
     st.markdown("<p class='font'> Le modèle entraîné obtient des résultats décents avec une précision globale de 75 %, et les f1-scores suivants : 72 % pour la classe COVID-19 et 77 % pour les classes   Non-COVID   et   Normal.   Nous   avons   ensuite   testé   ce   modèle   sur l’ensemble   de   test   original   et   nous   n’avons   pu   constater   que   de   faibles changements avec une accuracy de 75 sur cet ensemble, et des f1-scores de 71% pour la classe COVID-19, 75% pour la classe Non-COVID et 74% pour la classe Normal. Il est donc tout à fait possible d’entraîner un modèle à ne reconnaître que les formes des poumons. La présence d’un biais lié à la forme est donc possible et peut avoir un poids non négligeable. Notons les résultats observés sur les ensembles biaisés Normal-Up et COVID-Down sont très similaires à ceux obtenus avec l’ensemble de test original sur ce modèle (0.6% de différence au maximum). Le biais lié à la luminosité pour ce modèle est donc très faible.</p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> Nous avons donc essayé d’utiliser l’ensemble de test des masques ainsi créé pour mesurer l’impact de la forme sur les prédictions du modèle InceptionV3 obtenu dans la partie sur l’impact de la luminosité. Sur cet ensemble, le modèle atteint une précision globale de 43% (contre 93%) et les scores f1 suivants : 44% pour COVID-19, 49% pour Non-COVID et 26% pour la classe normale. Comme prévu, les résultats obtenus sont proches de ceux qui pourraient être obtenus dans   une   prédiction   aléatoire   (33%),   mais   soulignent   qu'une   partie   des prédictions pourrait encore être liée à la forme du poumon. Ceci est encore plus évident lorsque l'on observe la matrice de confusion. </p>", unsafe_allow_html=True)
     img = Image.open(os.path.join(currentdir,"data/table4.png"))
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns([0.7,4,0.5])
 
     with col1:
         st.write(' ')
