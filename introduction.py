@@ -21,7 +21,7 @@ def app():
     #Préparation de la page
     st.markdown(""" <style> .font {font-size:16px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
     st.markdown("# DEVELOPPEMENT D'UN MODELE DE DEEP LEARNING POUR LA CLASSIFICATION DE RADIOGRAPHIES DANS UN CONTEXTE COVID")
-    col1, col2 = st.columns([1,1])
+    col1, col2 = st.columns([1.5,1])
     with col1:
 
         st.markdown("<p class='font'> Le COVID-19 est une maladie infectieuse causée par le virus du SRAS-Cov-2. Ce virus affecte l'homme et a un tropisme pour les poumons. </p>", unsafe_allow_html=True)
@@ -30,7 +30,7 @@ def app():
         st.markdown("<p class='font'> Dans notre étude, nous avons utilisé le dataset COVID-QU-Ex présent sur Kaggle.          </p>", unsafe_allow_html=True)
     with col2:
         image = Image.open(os.path.join(currentdir, 'data/intro.jpg'))
-        st.image(image, width=300)
+        st.image(image, caption='Source : Freepik')
 
  
           
