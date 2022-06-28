@@ -74,7 +74,7 @@ def app():
     st.markdown("<p class='font'> Les différents ensembles ont été testés sur un modèle LeNet5, entraîné sur le dataset original et présentant un biais lié à la luminosité des images. Comme les deux nouveaux ensembles sont similaires à l’ensemble de test original (mêmes images) hormis les différences de luminosités, il est aisé d’évaluer facilement les changements induits par les ensembles biaisés. </p>", unsafe_allow_html=True)
     img = Image.open(os.path.join(currentdir,"data/table1.png"))
 
-    st.image(img, width=700,caption='Comparaison des résultats obtenus pour les ensembles biaisés sur LeNet5')
+    st.image(img, width=700,caption='Table 1. Comparaison des résultats obtenus pour les ensembles biaisés sur LeNet5')
     st.markdown("<p class='font'> Ainsi, une augmentation de la luminosité sur la classe Normal amènera le modèle à affecter un plus grand nombre d’images à la classe COVID-19, mettant en lumière le biais de luminosité lié à ces deux classes. Dans le cas d’une diminution de la luminosité de la classe COVID-19, le changement est réparti entre les classes   Non-COVID   et   Normal.   Cette   différence   pourrait   être   due   à   une discrimination selon la forme des poumons. </p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> Nous avons ensuite testé différents modèles et paramètres pour tenter de réduire l’impact de ce biais : </p>", unsafe_allow_html=True)
     st.markdown("   - **Encodage** : l’utilisation d’images en RGB **diminue** drastiquement l’impact du biais")
@@ -83,7 +83,7 @@ def app():
     st.markdown("- **Fine-tuning** :  l’effet dépend du modèle et des classes (ResNet50 et DenseNet201 : **diminue** l’impact sur la classe Normal et l’augmente sur la classe COVID-19 ; légère augmentation globale pour InceptionV3)")
     img = Image.open(os.path.join(currentdir,"data/table2.png"))
 
-    st.image(img, width=700)
+    st.image(img, width=700,caption="Table 2. Modifications observées par l'utilisation d'ensembles biaisés sur un modèle Inceptionv3")
     st.markdown("<p class='font'> Les modèles InceptionV3 semblent les plus robustes au biais de luminosité et les meilleurs résultats sont obtenu sur ce modèle, entraîné par fine-tuning, avec une accuracy globale de 92% :</p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> Nous pouvons constater que les changements de luminosité affectent assez peu le modèle (modifications inférieures à 2.3% la plupart du temps). Nous avons pu constater, sur les modèles utilisés en transfert learning, que la luminosité n’était pas la principale source de biais. La forme des poumons a en effet un impact beaucoup plus significatif</p>", unsafe_allow_html=True)
     st.markdown('### Impact de la forme des poumons')
@@ -92,7 +92,7 @@ def app():
     
     img = Image.open(os.path.join(currentdir,"data/table3.png"))
 
-    st.image(img, width=700)
+    st.image(img, width=700,caption="Table 3. Modifications observées par l'utilisation d'ensembles zoomés et dézoomés sur un modèle Inceptionv3")
     
 
 
@@ -106,7 +106,7 @@ def app():
     st.markdown("<p class='font'> Le modèle entraîné obtient des résultats décents avec une précision globale de 75 %, et les f1-scores suivants : 72 % pour la classe COVID-19 et 77 % pour les classes   Non-COVID   et   Normal.   Nous   avons   ensuite   testé   ce   modèle   sur l’ensemble   de   test   original   et   nous   n’avons   pu   constater   que   de   faibles changements avec une accuracy de 75 sur cet ensemble, et des f1-scores de 71% pour la classe COVID-19, 75% pour la classe Non-COVID et 74% pour la classe Normal. Il est donc tout à fait possible d’entraîner un modèle à ne reconnaître que les formes des poumons. La présence d’un biais lié à la forme est donc possible et peut avoir un poids non négligeable. Notons les résultats observés sur les ensembles biaisés Normal-Up et COVID-Down sont très similaires à ceux obtenus avec l’ensemble de test original sur ce modèle (0.6% de différence au maximum). Le biais lié à la luminosité pour ce modèle est donc très faible.</p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> Nous avons donc essayé d’utiliser l’ensemble de test des masques ainsi créé pour mesurer l’impact de la forme sur les prédictions du modèle InceptionV3 obtenu dans la partie sur l’impact de la luminosité. Sur cet ensemble, le modèle atteint une précision globale de 43% (contre 93%) et les scores f1 suivants : 44% pour COVID-19, 49% pour Non-COVID et 26% pour la classe normale. Comme prévu, les résultats obtenus sont proches de ceux qui pourraient être obtenus dans   une   prédiction   aléatoire   (33%),   mais   soulignent   qu'une   partie   des prédictions pourrait encore être liée à la forme du poumon. Ceci est encore plus évident lorsque l'on observe la matrice de confusion. </p>", unsafe_allow_html=True)
     img = Image.open(os.path.join(currentdir,"data/table4.png"))
-    st.image(img, width=700)
+    st.image(img, width=700,caption="Table 4. Matrice de confusion d'Inceptionv3 sur l'ensemble de test des masques")
     
     st.markdown("<p class='font'>Nous pouvons observer que la distribution n'est pas aussi aléatoire que nous aurions pu le penser. En effet, la classe Normal est sous représentée dans les prédictions. Cela peut être dû à un biais lié à la faible déviation des formes des poumons entre les images de cette classe. La majorité des prédictions pour cette classe sont reportées sur les classes COVID-19  et Non-COVID. Pour  ces  dernières,  la forme  seule  semble avoir beaucoup plus d'impact. Pour la classe Non-COVID, en particulier, le nombre de bonnes prédictions (1390) est largement supérieur aux faux négatifs de cette classe, attribués à la classe COVID-19 (688). Par conséquent, l'hypothèse d'un biais lié à la forme du poumon pour ce modèle ne peut être rejetée. Des résultats similaires peuvent être observés pour les modèles DenseNet201 et ResNet50, avec parfois une absence totale de prédiction pour la classe Normal. </p>", unsafe_allow_html=True)
     st.markdown('### Conclusion')
