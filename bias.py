@@ -94,8 +94,7 @@ def app():
 
     st.image(img, width=700)
     
-    img = Image.open(os.path.join(currentdir,"data/test2.png"))
-    st.image(img, width=700)
+
 
     st.markdown("<p class='font'> Comme nous avons pu le voir précédemment, des divergences liées à la forme des poumons entre les différentes classes pourraient induire des biais lors de l’entraînement de nos modèles. Nous avons d’ailleurs pu le constater sur un modèle DenseNet201 (accuracy globale : 92%) entraîné par fine-tuning, en appliquant des zooms et dézooms sur l’ensemble de test :</p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> En regardant plus en détail, il est possible de constater que la classe Normal est la plus affectée dans les deux cas. Cela pourrait être lié à la faible déviation entre les différentes formes des poumons de cette classe dans le dataset. Le moindre changement de forme entraînera donc une forte modification des prédictions pour cette classe. Pour mesurer l’impact de la forme des poumons, nous avons donc, tout d’abord, tenté d’entraîner un modèle pour qu’il ne reconnaisse que le forme des poumons. Un modèle InceptionV3 a donc été entraîné en n’utilisant que les masques fournis avec le dataset. La luminosité de ces derniers a été diminuée aléatoirement entre 20 et 70% pour représenter le domaine d’étude :</p>", unsafe_allow_html=True)
