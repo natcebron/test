@@ -53,4 +53,4 @@ for member in config.TEAM_MEMBERS:
         st.sidebar.markdown(member.sidebar_markdown(), unsafe_allow_html=True)
         
 st.sidebar.markdown("### Promotion:")
-        st.sidebar.markdown(PROMOTION.sidebar_markdown(), unsafe_allow_html=True)
+st.sidebar.markdown(PROMOTION.sidebar_markdown(), unsafe_allow_html=True)
