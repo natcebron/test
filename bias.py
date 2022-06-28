@@ -74,7 +74,7 @@ def app():
     st.markdown("<p class='font'> Les différents ensembles ont été testés sur un modèle LeNet5, entraîné sur le dataset original et présentant un biais lié à la luminosité des images. Comme les deux nouveaux ensembles sont similaires à l’ensemble de test original (mêmes images) hormis les différences de luminosités, il est aisé d’évaluer facilement les changements induits par les ensembles biaisés. </p>", unsafe_allow_html=True)
     img = Image.open(os.path.join(currentdir,"data/table1.png"))
 
-    st.image(img, width=700)
+    st.image(img, width=700,caption='Comparaison des résultats obtenus pour les ensembles biaisés sur LeNet5')
     st.markdown("<p class='font'> Ainsi, une augmentation de la luminosité sur la classe Normal amènera le modèle à affecter un plus grand nombre d’images à la classe COVID-19, mettant en lumière le biais de luminosité lié à ces deux classes. Dans le cas d’une diminution de la luminosité de la classe COVID-19, le changement est réparti entre les classes   Non-COVID   et   Normal.   Cette   différence   pourrait   être   due   à   une discrimination selon la forme des poumons. </p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> Nous avons ensuite testé différents modèles et paramètres pour tenter de réduire l’impact de ce biais : </p>", unsafe_allow_html=True)
     st.markdown("   - **Encodage** : l’utilisation d’images en RGB **diminue** drastiquement l’impact du biais")
