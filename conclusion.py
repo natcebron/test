@@ -28,7 +28,13 @@ def app():
     st.markdown("<p class='font'> Pour tenter de corriger ces biais, diverses méthodes de prétraitement ont été développées. Tout d'abord, l'application d'un masque pulmonaire a entraîné une réduction des performances du modèle mais une interprétabilité plus cohérente. L'application d'un masque pulmonaire a réduit de manière significative le biais d'image, mais les biais de luminosité et de forme étaient toujours présents. Pour réduire le biais de luminosité, différentes méthodes de modification de l'image ont été testées (correction gamma, stries de contraste, CLAHE). Au final, le meilleur résultat obtenu a été une précision de 0,89 après l'application d'un ajustement de la luminosité avec le modèle InceptionV3.</p> </p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> Les prochains objectifs de ce projet seraient de tester d'autres combinaisons de modèles et de méthodes de prétraitement car de nombreuses méthodes présentes dans la littérature n'ont pas été testées. De plus, l'un des autres objectifs serait de tester cette approche sur d'autres jeux de données de rayons X afin d'évaluer la reproductibilité de l'approche et du modèle associé. </p>", unsafe_allow_html=True)
     image2 = Image.open(os.path.join(currentdir, 'data/article.png'))
-    st.image(image2,width=800)
+    col1, col2,col3 = st.columns([1,1,1])
+    with col1:
+        st.write("")
+    with col2:
+        st.image(image2,width=800)
+    with col3:
+        st.write("")
 
     
 
