@@ -65,7 +65,7 @@ def app():
 
     image = Image.open(os.path.join(currentdir, 'data/Presentation1.png'))
    
-    col1, mid, col2 = st.columns([2,2,2])
+    col1, mid, col2 = st.columns([0.5,4,0.5])
     with mid:
         st.image(image, width=300)
 
