@@ -39,7 +39,7 @@ SOMMAIRE = {
 
 
 
-st.sidebar.title('Menu')
+st.sidebar.title('SOMMAIRE')
 selection_page = st.sidebar.radio("",list(SOMMAIRE.keys()))
 page = SOMMAIRE[selection_page]
 page.app()
