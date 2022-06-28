@@ -61,7 +61,7 @@ def app():
 
 
     st.markdown('## DATASETS BIAISES')
-    st.markdown('### Impact de la luminosité')
+        st.markdown('### Impact de la luminosité')
     st.markdown("<p class='font'> Comme nous avons pu le voir dans la partie de visualisation des données, certains paramètres comme la luminosité et la forme des poumons varient selon les classes et pourraient donc potentiellement induire des biais lors de l’entraînement des modèles. </p>", unsafe_allow_html=True)
 
     img = Image.open(os.path.join(currentdir, 'data/graph1.png'))
