@@ -37,7 +37,7 @@ def app():
     
 
 
-    col1, col2, col3 = st.columns(0.5,2,0.5)
+    col1, col2, col3 = st.columns([0.5,2,0.5])
 
     with col1:
         st.write(' ')
