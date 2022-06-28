@@ -68,7 +68,7 @@ def app():
 
     st.image(img, width=1000)
     st.markdown("<p class='font'> Afin de détecter ces biais, nous nous sommes inspirés des travaux de Schaaf et al. (DOI :10.48550/arXiv.210700360)  et avons volontairement introduit des biais dans deux ensembles de tests, en modifiant la luminosité des images masquées, tout en restant dans le domaine d’études. Pour l’ensemble Normal-Up, la luminosité de la classe Normal uniquement a été augmentée de 20%. Pour l’ensemble COVID-Down, la luminosité de la classe COVID-19 uniquement a été diminuée de 10%  </p>", unsafe_allow_html=True)
-    img = Image.open("./data/graph2.png")
+    img = Image.open(os.path.join(currentdir,"data/graph2.png")
 
     st.image(img, width=1000)
     st.markdown("<p class='font'> Les différents ensembles ont été testés sur un modèle LeNet5, entraîné sur le dataset original et présentant un biais lié à la luminosité des images. Comme les deux nouveaux ensembles sont similaires à l’ensemble de test original (mêmes images) hormis les différences de luminosités, il est aisé d’évaluer facilement les changements induits par les ensembles biaisés. </p>", unsafe_allow_html=True)
