@@ -5,34 +5,14 @@ from PIL import Image, ImageStat
 def app():
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  
     local_css(os.path.join(currentdir, "style.css"))
-    st.markdown(f"""
-                <style>
-                  .reportview-container .main .block-container{{
-                    padding-top: 0 rem;
-                    marging-top: 0 rem;
-                  }}
-                  .reportview-container .main{{
-                    padding-top: 0 rem;
-                    marging-top: 0 rem;
-                  }} 
-                  .font {{
-                    font-size:16px ; font-family: 'Arial'; color: #FFFFFF;}} 
-               
-                </style>
-               """, unsafe_allow_html=True)
-  
-    st.markdown('''
-          <h2>Conclusion</h2>
-          <p class="font">
-          Dans cette étude, la méthode d'interprétabilité du modèle d'apprentissage profond Gradcam, a été utilisée pour comprendre comment le modèle classe différents ensembles d'images. Cette méthode a confirmé l'hypothèse selon laquelle le jeu de données étudié était biaisé. En effet, nous avons montré que le modèle sur les images de base classait les images utilisant des parties non ciblées sur les poumons. Ce résultat a été confirmé en utilisant d'autres méthodes (jeu de données biaisé et réseaux adversariaux génératifs). L'utilisation de ces méthodes, bien que récente, n'est que rarement présente dans la littérature en relation avec la reconnaissance de radiographies dans un contexte COVID.</p>
-          <p class="font">
-          Pour tenter de corriger ces biais, diverses méthodes de prétraitement ont été développées. Tout d'abord, l'application d'un masque pulmonaire a entraîné une réduction des performances du modèle mais une interprétabilité plus cohérente. L'application d'un masque pulmonaire a réduit de manière significative le biais d'image, mais les biais de luminosité et de forme étaient toujours présents. Pour réduire le biais de luminosité, différentes méthodes de modification de l'image ont été testées (correction gamma, stries de contraste, CLAHE). Au final, le meilleur résultat obtenu a été une précision de 0,89 après l'application d'un ajustement de la luminosité avec le modèle InceptionV3.</p>
-          <p class="font">
-          Les prochains objectifs de ce projet seraient de tester d'autres combinaisons de modèles et de méthodes de prétraitement car de nombreuses méthodes présentes dans la littérature n'ont pas été testées. De plus, l'un des autres objectifs serait de tester cette approche sur d'autres jeux de données de rayons X afin d'évaluer la reproductibilité de l'approche et du modèle associé.
-          </p>
-          ''', unsafe_allow_html=True)
-     image = Image.open(os.path.join(currentdir, 'data/article.png'))
-     st.image(image,width=1000)
+    
+    st.markdown(""" <style> .font {font-size:16px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
+    st.markdown("# CONCLUSION")
+    st.markdown("<p class='font'> Dans cette étude, la méthode d'interprétabilité du modèle d'apprentissage profond Gradcam, a été utilisée pour comprendre comment le modèle classe différents ensembles d'images. Cette méthode a confirmé l'hypothèse selon laquelle le jeu de données étudié était biaisé. En effet, nous avons montré que le modèle sur les images de base classait les images utilisant des parties non ciblées sur les poumons. Ce résultat a été confirmé en utilisant d'autres méthodes (jeu de données biaisé et réseaux adversariaux génératifs). L'utilisation de ces méthodes, bien que récente, n'est que rarement présente dans la littérature en relation avec la reconnaissance de radiographies dans un contexte COVID.</p> </p>", unsafe_allow_html=True)
+    st.markdown("<p class='font'> Pour tenter de corriger ces biais, diverses méthodes de prétraitement ont été développées. Tout d'abord, l'application d'un masque pulmonaire a entraîné une réduction des performances du modèle mais une interprétabilité plus cohérente. L'application d'un masque pulmonaire a réduit de manière significative le biais d'image, mais les biais de luminosité et de forme étaient toujours présents. Pour réduire le biais de luminosité, différentes méthodes de modification de l'image ont été testées (correction gamma, stries de contraste, CLAHE). Au final, le meilleur résultat obtenu a été une précision de 0,89 après l'application d'un ajustement de la luminosité avec le modèle InceptionV3.</p> </p>", unsafe_allow_html=True)
+    st.markdown("<p class='font'> Les prochains objectifs de ce projet seraient de tester d'autres combinaisons de modèles et de méthodes de prétraitement car de nombreuses méthodes présentes dans la littérature n'ont pas été testées. De plus, l'un des autres objectifs serait de tester cette approche sur d'autres jeux de données de rayons X afin d'évaluer la reproductibilité de l'approche et du modèle associé. </p>", unsafe_allow_html=True)
+    image2 = Image.open(os.path.join(currentdir, 'data/article.png'))
+    st.image(image2,width=1000)
 
     
 
