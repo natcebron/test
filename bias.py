@@ -63,7 +63,7 @@ def app():
     st.markdown('### Impact de la luminosité')
     st.markdown("<p class='font'> Comme nous avons pu le voir dans la partie de visualisation des données, certains paramètres comme la luminosité et la forme des poumons varient selon les classes et pourraient donc potentiellement induire des biais lors de l’entraînement des modèles. </p>", unsafe_allow_html=True)
 
-    img = Image.open(os.path.join(currentdir, "data/graph1.png")
+    img = Image.open(os.path.join(currentdir, 'data/graph1.png')
 
     st.image(img,width=1000)
     st.markdown("<p class='font'> Afin de détecter ces biais, nous nous sommes inspirés des travaux de Schaaf et al. (DOI :10.48550/arXiv.210700360)  et avons volontairement introduit des biais dans deux ensembles de tests, en modifiant la luminosité des images masquées, tout en restant dans le domaine d’études. Pour l’ensemble Normal-Up, la luminosité de la classe Normal uniquement a été augmentée de 20%. Pour l’ensemble COVID-Down, la luminosité de la classe COVID-19 uniquement a été diminuée de 10%  </p>", unsafe_allow_html=True)
