@@ -72,11 +72,11 @@ def app():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(img,width=1000)
+        st.image(img)
 
 
     with col2:
-        st.image(img2,width=1000)
+        st.image(img2)
 
 
     st.markdown("<p class='font'> Afin de détecter ces biais, nous nous sommes inspirés des travaux de Schaaf et al. (DOI :10.48550/arXiv.210700360)  et avons volontairement introduit des biais dans deux ensembles de tests, en modifiant la luminosité des images masquées, tout en restant dans le domaine d’études. Pour l’ensemble Normal-Up, la luminosité de la classe Normal uniquement a été augmentée de 20%. Pour l’ensemble COVID-Down, la luminosité de la classe COVID-19 uniquement a été diminuée de 10%  </p>", unsafe_allow_html=True)
