@@ -21,3 +21,5 @@ TEAM_MEMBERS = [
 )]
 
 PROMOTION = "Promotion Bootcamp Data Scientist - Mai 2022"
+
+MENTOR = "Gaspard GRIMM"
