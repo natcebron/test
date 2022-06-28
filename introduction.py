@@ -9,6 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import random               #+Deployment
+from PIL import Image, ImageStat
 
 def local_css(file_name):
     with open(file_name) as f:
