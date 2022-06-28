@@ -12,6 +12,12 @@ import seaborn as sns
 from PIL import Image, ImageStat
 import matplotlib.image as mpimg
 import cv2 as cv
+
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+        
+        
 def app():
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  
     local_css(os.path.join(currentdir, "style.css"))
