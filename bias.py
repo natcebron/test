@@ -56,7 +56,6 @@ def app():
 
     st.markdown("<p class='font'> Grad-Cam est une méthode publiée en 2016 qui vise à savoir quelles parties de l'image ont été utilisées par le modèle pour classer les images. Le résultat est affiché sous la forme d'une carte thermique.  </p>", unsafe_allow_html=True)
 
-    st.image(image,width=1000)
     st.markdown("<p class='font'> En utilisant cette méthode nous obtenons des résultats très concluants que notre modèle est biaisé. En effet, nous pouvons voir que les zones les plus utilisées par le modèle (en rouge) ne correspondent pas aux poumons mais à des parties externes de l'image. Ce résultat est encore plus évident pour le groupe COVID où l'on constate que ce sont toujours les mêmes zones qui sont trouvées. Ce résultat explique notre précision pour ce groupe très élevé. </p>", unsafe_allow_html=True)
 
 
@@ -66,7 +65,7 @@ def app():
 
     img = Image.open(os.path.join(currentdir, "data/graph1.png")
 
-    st.image(img, width=1000)
+    st.image(img,width=1000)
     st.markdown("<p class='font'> Afin de détecter ces biais, nous nous sommes inspirés des travaux de Schaaf et al. (DOI :10.48550/arXiv.210700360)  et avons volontairement introduit des biais dans deux ensembles de tests, en modifiant la luminosité des images masquées, tout en restant dans le domaine d’études. Pour l’ensemble Normal-Up, la luminosité de la classe Normal uniquement a été augmentée de 20%. Pour l’ensemble COVID-Down, la luminosité de la classe COVID-19 uniquement a été diminuée de 10%  </p>", unsafe_allow_html=True)
     img = Image.open(os.path.join(currentdir,"data/graph2.png")
 
