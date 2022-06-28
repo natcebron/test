@@ -40,8 +40,8 @@ SOMMAIRE = {
 
 
 st.sidebar.title('Menu')
-selection_page = st.sidebar.radio("",list(MENU.keys()))
-page = MENU[selection_page]
+selection_page = st.sidebar.radio("",list(SOMMAIRE.keys()))
+page = SOMMAIRE[selection_page]
 page.app()
 
 st.sidebar.markdown("### Team members:")
