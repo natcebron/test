@@ -50,7 +50,6 @@ def app():
     unet = load_model(os.path.join(currentdir, 'UNET.hdf5'))
 
     df = pd.read_csv(os.path.join(currentdir, 'data/model results.csv'),sep=";")
-    st.dataframe(data=df)
     df2 = pd.read_csv(os.path.join(currentdir, 'data/model results2.csv'),sep=";")
     st.dataframe(data=df2)
     def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
