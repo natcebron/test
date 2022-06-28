@@ -30,7 +30,8 @@ def app():
           Les prochains objectifs de ce projet seraient de tester d'autres combinaisons de modèles et de méthodes de prétraitement car de nombreuses méthodes présentes dans la littérature n'ont pas été testées. De plus, l'un des autres objectifs serait de tester cette approche sur d'autres jeux de données de rayons X afin d'évaluer la reproductibilité de l'approche et du modèle associé.
           </p>
           ''', unsafe_allow_html=True)
-          
+     image = Image.open(os.path.join(currentdir, 'data/article.png'))
+     st.image(image,width=1000)
 
     
 
