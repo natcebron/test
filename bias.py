@@ -80,7 +80,7 @@ def app():
     st.markdown("   - **Encodage** : l’utilisation d’images en RGB **diminue** drastiquement l’impact du biais")
     st.markdown("- **Dimensions   de   l’image** :  augmenter   les   dimensions   des   images **diminue** l’impact du biais")
     st.markdown("- **Prétraitement** : l’utilisation de la fonction de prétraitement spécifique au modèle  **diminue**  l’impact du biais par rapport à un simple rescale par 1/255")
-    st.markdown("- **Fine-tuning** :  l’effet dépend du modèle et des classes (ResNet50 et DenseNet201 : diminue l’impact sur la classe Normal et l’augmente sur la classe COVID-19 ; légère augmentation globale pour InceptionV3)")
+    st.markdown("- **Fine-tuning** :  l’effet dépend du modèle et des classes (ResNet50 et DenseNet201 : **diminue** l’impact sur la classe Normal et l’augmente sur la classe COVID-19 ; légère augmentation globale pour InceptionV3)")
     img = Image.open(os.path.join(currentdir,"data/tableau2.PNG"))
 
     st.image(img, width=700)
