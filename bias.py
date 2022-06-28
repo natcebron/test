@@ -77,9 +77,9 @@ def app():
     st.image(img, width=700)
     st.markdown("<p class='font'> Ainsi, une augmentation de la luminosité sur la classe Normal amènera le modèle à affecter un plus grand nombre d’images à la classe COVID-19, mettant en lumière le biais de luminosité lié à ces deux classes. Dans le cas d’une diminution de la luminosité de la classe COVID-19, le changement est réparti entre les classes   Non-COVID   et   Normal.   Cette   différence   pourrait   être   due   à   une discrimination selon la forme des poumons. </p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> Nous avons ensuite testé différents modèles et paramètres pour tenter de réduire l’impact de ce biais : </p>", unsafe_allow_html=True)
-    st.markdown("- Encodage : l’utilisation d’images en RGB diminue drastiquement l’impact du biais)
-    st.markdown("- Dimensions   de   l’image :  augmenter   les   dimensions   des   images diminue l’impact du biais)
-    st.markdown("- Prétraitement : l’utilisation de la fonction de prétraitement spécifique au modèle  diminue  l’impact du biais par rapport à un simple rescale par 1/255)
+    st.markdown("- Encodage : l’utilisation d’images en RGB diminue drastiquement l’impact du biais")
+    st.markdown("- Dimensions   de   l’image :  augmenter   les   dimensions   des   images diminue l’impact du biais")
+    st.markdown("- Prétraitement : l’utilisation de la fonction de prétraitement spécifique au modèle  diminue  l’impact du biais par rapport à un simple rescale par 1/255")
     st.markdown("- Fine-tuning :  l’effet dépend du modèle et des classes (ResNet50 et DenseNet201 : diminue l’impact sur la classe Normal et l’augmente sur la classe COVID-19 ; légère augmentation globale pour InceptionV3)")
     img = Image.open(os.path.join(currentdir,"data/tableau2.PNG"))
 
