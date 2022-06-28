@@ -33,7 +33,10 @@ SOMMAIRE = {
     "Model" : model,
     "Prediction" : prediction,
     "Conclusion" : conclusion,
-    "Interactif":test2       
+    "Interactif":test2,
+    "Interactif2":__init__
+
+    
 }
 
 
