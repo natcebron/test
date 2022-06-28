@@ -42,7 +42,7 @@ def app():
     st.markdown("<p class='font'> Pour tenter d'éliminer les biais, diverses méthodes de prétraitement ont été testées. Nous avons testé l'application de masques en utilisant un modèle UNET, un filtre gaussien : Une méthode de flou de l'image pour réduire le bruit de l'image, ajuster le gamma : Une méthode de correction pour contrôler la luminosité, l'égalisation d'histogramme adaptative limitée par le contraste (CLAHE), une technique pour modifier l'image en améliorant le contraste. La dernière méthode est un mélange de CLAHE et d'un filtre de transformation. </p>", unsafe_allow_html=True)
 
     image = Image.open(os.path.join(currentdir, 'data/preprocessing method.png'))
-    st.image(image,width=800)
+    st.image(image,width=100)
     st.markdown("# RÉSULTATS DES MODÈLES")
     st.markdown("<p class='font'>  Plusieurs modèles d'application de ces transformations ont été testés. Le modèle de base utilisé est Inceptionv3, qui est un modèle largement utilisé dans le domaine de l'imagerie radiologique.</p>", unsafe_allow_html=True)
     st.markdown("<p class='font'>  Paramètres modèles : InceptionV3, epochs = 30, loss_function = sparse_categorical_crossentropy, optimizer = Adam </p>", unsafe_allow_html=True)
