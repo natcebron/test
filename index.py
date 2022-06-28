@@ -21,7 +21,7 @@ import member
 from collections import OrderedDict
 
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-logo = os.path.join(currentdir, 'ressources/covid_21.png')
+logo = os.path.join(currentdir, 'data/covid_1.png')
 PAGE_CONFIG = {"page_title":"DeMACIA-RX.io","page_icon": logo,"layout":"wide"}
 st.set_page_config(**PAGE_CONFIG)
 
