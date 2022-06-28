@@ -3,7 +3,8 @@ import os
 import inspect                 #+Deployment
 
 def app():
-
+    currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  
+    local_css(os.path.join(currentdir, "style.css"))
     st.markdown(f"""
                 <style>
                   .reportview-container .main .block-container{{
