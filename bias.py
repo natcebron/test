@@ -87,17 +87,16 @@ def app():
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.write(' ')
+        st.image(img)
 
     with col2:
-        st.dataframe(data=df,width=800)
+        st.image(img2)
 
     with col3:
-        st.write(' ')
+        st.image(img3)
     
     
     
-    st.image(img, width=1000)
     st.markdown("<p class='font'> Les différents ensembles ont été testés sur un modèle LeNet5, entraîné sur le dataset original et présentant un biais lié à la luminosité des images. Comme les deux nouveaux ensembles sont similaires à l’ensemble de test original (mêmes images) hormis les différences de luminosités, il est aisé d’évaluer facilement les changements induits par les ensembles biaisés. </p>", unsafe_allow_html=True)
     img = Image.open(os.path.join(currentdir,"data/table1.png"))
 
