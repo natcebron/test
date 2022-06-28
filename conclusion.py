@@ -1,7 +1,7 @@
 import streamlit as st 
 import os
 import inspect                 #+Deployment
-
+from PIL import Image, ImageStat
 def app():
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  
     local_css(os.path.join(currentdir, "style.css"))
