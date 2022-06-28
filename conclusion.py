@@ -1,7 +1,17 @@
-import streamlit as st 
-import os
+import streamlit as st
+import streamlit.components.v1 as components
+import os                      #+Deployment
 import inspect                 #+Deployment
+#importing all the necessary libraries
+import pandas as pd
+import numpy as np                     
+import matplotlib.pyplot as plt
+import os
+import random
+import seaborn as sns
 from PIL import Image, ImageStat
+import matplotlib.image as mpimg
+import cv2 as cv
 def app():
     currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))  
     local_css(os.path.join(currentdir, "style.css"))
