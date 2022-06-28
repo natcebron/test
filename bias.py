@@ -72,11 +72,11 @@ def app():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(img,caption='Distribution de la luminosité (Radiographies complètes')
+        st.image(img,caption='Distribution de la luminosité (Radiographies complètes)')
 
 
     with col2:
-        st.image(img2,caption='Distribution de la luminosité (Radiographies masquées')
+        st.image(img2,caption='Distribution de la luminosité (Radiographies masquées)')
 
 
     st.markdown("<p class='font'> Afin de détecter ces biais, nous nous sommes inspirés des travaux de Schaaf et al. (DOI :10.48550/arXiv.210700360)  et avons volontairement introduit des biais dans deux ensembles de tests, en modifiant la luminosité des images masquées, tout en restant dans le domaine d’études. Pour l’ensemble Normal-Up, la luminosité de la classe Normal uniquement a été augmentée de 20%. Pour l’ensemble COVID-Down, la luminosité de la classe COVID-19 uniquement a été diminuée de 10%  </p>", unsafe_allow_html=True)
@@ -87,13 +87,13 @@ def app():
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.image(img)
+        st.image(img,caption='Distribution de pixels (original)')
 
     with col2:
-        st.image(img2)
+        st.image(img2,caption='Distribution de pixels (Normal Up)')
 
     with col3:
-        st.image(img3)
+        st.image(img3,caption='Distribution de pixels (COVID-Down)')
     
     
     
@@ -106,7 +106,7 @@ def app():
         st.write("")
 
     with col2:
-        st.image(img)
+        st.image(img,caption='Table 1. Comparaison des résultats obtenus pour les ensembles biaisés sur LeNet5')
 
     with col3:
         st.write("")
@@ -159,10 +159,10 @@ def app():
     col1, col2 = st.columns(2)
 
     with col1:
-        st.image(img)
+        st.image(img,caption='Distribution de la luminosité(Ensemble de test original)')
 
     with col2:
-        st.image(img2)
+        st.image(img2,caption='Distribution de la luminosité(masques, luminosité aléatoire)')
 
 
     
