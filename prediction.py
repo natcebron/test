@@ -41,15 +41,9 @@ def app():
     st.markdown(""" <style> .font {font-size:20px ; font-family: 'Arial'; color: #FFFFFF;} </style> """, unsafe_allow_html=True)
     st.markdown("# PRÉDICTION DES RADIOGRAPHIES")
     dog_breeds_category_path = os.path.join(currentdir, 'data/test.pkl')
-    import urllib.request
 
-    urllib.request.urlretrieve(
-        'https://github.com/natcebron/test2/blob/b44cb3febf08c6b3ebd41c688f455369d0f4b7ee/Model_masks.hdf5', 'Model_masks.hdf5')
-    predictor_model = load_model("Model_masks.hdf5")
-    urllib.request.urlretrieve(
-        'https://github.com/natcebron/test2/blob/b44cb3febf08c6b3ebd41c688f455369d0f4b7ee/UNET.hdf5', 'unet.hdf5')
-    unet = load_model("unet.hdf5")
-    
+    predictor_model = load_model(os.path.join(currentdir, 'Model_masks.hdf5'))
+    unet = load_model(os.path.join(currentdir, 'UNET.hdf5'))
 
     with open(dog_breeds_category_path, 'rb') as handle:
         dog_breeds = pickle.load(handle)
