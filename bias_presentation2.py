@@ -278,8 +278,6 @@ def app():
 
     shape_image = (28,28)
 
-    @st.cache(allow_output_mutation=True)
-
     model_covid = load_model(os.path.join(currentdir, 'gen_covid.hdf5'))
     model_lung = load_model(os.path.join(currentdir, 'gen_lung.hdf5'))
     model_viral = load_model(os.path.join(currentdir, 'gen_viral.hdf5'))
