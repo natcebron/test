@@ -1,0 +1,10 @@
+﻿preprocessing method;COVID precision;COVID recall;COVID F1-score;Normal precision;Normal recall;Normal F1-score;Non_COVID precision;Non_COVID recall;Non_COVID F1-score
+Base;0.99;0.90;0.94;0.89;0.92;0.90;0.87;0.92;0.89
+Masks;0.94;0.84;0.89;0.88;0.90;0.89;0.82;0.89;0.86
+Masks +gamma correction;0.95;0.82;0.88;0.88;0.90;0.89;0.80;0.90;0.85
+Masks +CLAHE + gamma correction;0.35;0.37;0.36;0.32;0.21;0.25;0.33;0.42;0.37
+Masks +CLAHE + gaussian_filter;0.88;0.74;0.80;0.66;0.51;0.57;0.63;0.88;0.73
+Masks +CLAHE + Morphology;0.95;0.88;0.92;0.79;0.55;0.64;0.67;0.92;0.78
+Masks +contrast_stretch;0.93;0.86;0.90;0.85;0.90;0.87;0.86;0.88;0.87
+Masks +gaussian filter;0.78;0.67;0.72;0.75;0.78;0.76;0.72;0.80;0.76
+Masks +Adjust Brightness;0.94;0.89;0.92;0.87;0.90;0.89;0.86;0.89;0.88
