@@ -3,4 +3,4 @@ opencv-python-headless
 seaborn
 tensorflow
 plotly.express
-bokeh
+bokeh==2.4.1
