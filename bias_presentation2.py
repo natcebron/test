@@ -289,13 +289,13 @@ def app():
         noise = tf.random.normal(shape=[10, codings_size])
         images = model(noise)
 
-    for img in images:
-        #image = Image.fromarray(img.numpy().reshape(shape_image[0],shape_image[1]))
-        image = img.numpy().reshape(shape_image[0], shape_image[1])
-        fig = plt.figure()
-        plt.imshow(image)
-        st.pyplot(fig)
-    return image
+        for img in images:
+            #image = Image.fromarray(img.numpy().reshape(shape_image[0],shape_image[1]))
+            image = img.numpy().reshape(shape_image[0], shape_image[1])
+            fig = plt.figure()
+            plt.imshow(image)
+            st.pyplot(fig)
+        return image
 
     codings_size =100
 
