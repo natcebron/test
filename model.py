@@ -42,7 +42,7 @@ def app():
     st.markdown("## SEGMENTATION DES IMAGES")
     st.markdown("<p class='font'> La segmentation des images a été réalisé à l'aide d'un modèle UNET. Ce modèle a été entrainé sur un tiers du dataset. </p>", unsafe_allow_html=True)
     st.markdown("<p class='font'> Accuracy : 0.99 </p>", unsafe_allow_html=True)
-    col1, col2, col3 = st.columns(3)
+    col1, col2 = st.columns(2)
 
     with col1:
         image = Image.open(os.path.join(currentdir, 'data/covid_1.png'))
