@@ -50,7 +50,7 @@ def app():
 
     with col2:
         image = Image.open(os.path.join(currentdir, 'data/mask_covid_1.png'))
-        st.image(image,caption='Radiographie + Mask')
+        st.image(image,caption='Radiographie + Mask',width=1000)
 
     
     st.markdown("## VISUALISATION")
