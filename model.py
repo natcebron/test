@@ -46,13 +46,12 @@ def app():
 
     with col1:
         image = Image.open(os.path.join(currentdir, 'data/covid_1.png'))
-        st.image(image)
+        st.image(image,caption='Radiographie')
 
     with col2:
         image = Image.open(os.path.join(currentdir, 'data/mask_covid_1.png'))
-        st.image(image)
-    with col3:
-        st.write(' ')
+        st.image(image,caption='Radiographie + Mask')
+
     
     st.markdown("## VISUALISATION")
     st.markdown("<p class='font'> Pour tenter d'éliminer les biais, diverses méthodes de prétraitement ont été testées. Nous avons testé l'application de masques en utilisant un modèle UNET, un filtre gaussien : Une méthode de flou de l'image pour réduire le bruit de l'image, ajuster le gamma : Une méthode de correction pour contrôler la luminosité, l'égalisation d'histogramme adaptative limitée par le contraste (CLAHE), une technique pour modifier l'image en améliorant le contraste. La dernière méthode est un mélange de CLAHE et d'un filtre de transformation. </p>", unsafe_allow_html=True)
