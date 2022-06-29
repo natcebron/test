@@ -294,7 +294,12 @@ def app():
             image = img.numpy().reshape(shape_image[0], shape_image[1])
             fig = plt.figure()
             plt.imshow(image)
-            st.pyplot(fig)
+            
+            col1, col2, col3 = st.columns(3)
+
+            with col2:
+                st.pyplot(fig)
+
         return image
 
     codings_size =100
