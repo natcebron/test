@@ -30,7 +30,7 @@ import matplotlib.cm as cm
 import streamlit.components.v1 as components
 import plotly.express as px
 def app():
-    st.markdown("# ANALYSE DES IMAGES INTERACTIVES")
+    st.markdown("# IMAGE ANALYSE INTERACTIVE")
     predictor_model = load_model(os.path.join('Model_masks.hdf5'))
 
     def Gradcam(url):
