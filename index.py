@@ -5,7 +5,7 @@ import os
 
 import introduction                     #+Deployment
 import group
-import bias
+import bias-presentation2
 import exploration
 import model
 import home
@@ -29,7 +29,7 @@ SOMMAIRE = {
     "Introduction" : introduction,
     "Dataset exploration" : exploration,
     "Group comparison" : group,
-    "Bias determination" : bias,
+    "Bias determination" : bias-presentation2,
     "Model" : model,
     "Prediction" : prediction,
     "Conclusion" : conclusion,
