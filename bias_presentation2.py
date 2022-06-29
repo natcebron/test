@@ -275,6 +275,45 @@ def app():
 
     st.markdown('## GANS')
 
+    shape_image = (28,28)
 
+    @st.cache(allow_output_mutation=True)
+    def load_model_gen(path):
+        model_gen = load_model(path)
+        return model_gen
+    model_covid = load_model_gen(os.path.join(currentdir, 'gen_covid.hdf5'))
+    model_lung = load_model_gen(os.path.join(currentdir, 'gen_lung.hdf5'))
+    model_viral = load_model_gen(os.path.join(currentdir, 'gen_viral.hdf5'))
+    model_normal = load_model_gen(os.path.join(currentdir, 'gen_normal.hdf5'))
+
+    def create_image(model):
+        noise = tf.random.normal(shape=[10, codings_size])
+        images = model(noise)
+
+    for img in images:
+        #image = Image.fromarray(img.numpy().reshape(shape_image[0],shape_image[1]))
+        image = img.numpy().reshape(shape_image[0], shape_image[1])
+        fig = plt.figure()
+        plt.imshow(image)
+        st.pyplot(fig)
+    return image
+
+    codings_size =100
+
+    st.title("Generative adversarial network (GAN)")
+    st.header("Presentation")
+    st.write("les modèles de type  gan sont des models génératif avec un type d'apprentissage semi-supervise, ses modeles servent généré des images via des couches neuronales.")
+    st.write("l'apprentissage se fait grace à la competition de deux modèles , un premier modèles  le discriminateur et un deuxieme modèle le generateur.")
+    st.write("le générateur est un modèles qui permet de cree une image à partir d'un bruit blanc ")
+    st.write("le discriminateur  sélectionne si l'image vient du dataset (Real image) ou si l' image vient du generator (Fake image)")
+    st.write("le but est que le générateur arrive à tromper le plus souvent le discriminateur pour arriver à une image cohérente du dataset ")
+    st.write("l'objectif de cette exprérimentation est de savoir si les images générées par le GAN à de l'importance positive ou négative sur les performances du modèle ? ")
+
+
+
+    st.image("./doss_damien/img.png",width =800)
+
+
+    st.title("Methodologie")
 if __name__ == '__main__':  # test
     app()
