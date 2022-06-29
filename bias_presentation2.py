@@ -277,11 +277,13 @@ def app():
     st.markdown('## GANS')
 
     shape_image = (28,28)
-
-    model_covid = load_model(os.path.join(currentdir, 'gen_covid.hdf5'))
-    model_lung = load_model(os.path.join(currentdir, 'gen_lung.hdf5'))
-    model_viral = load_model(os.path.join(currentdir, 'gen_viral.hdf5'))
-    model_normal = load_model(os.path.join(currentdir, 'gen_normal.hdf5'))
+    def load_model_gen(path):
+        model_gen = load_model(path)
+        return model_gen
+    model_covid = load_model_gen(os.path.join(currentdir, 'gen_covid.hdf5'))
+    model_lung = load_model_gen(os.path.join(currentdir, 'gen_lung.hdf5'))
+    model_viral = load_model_gen(os.path.join(currentdir, 'gen_viral.hdf5'))
+    model_normal = load_model_gen(os.path.join(currentdir, 'gen_normal.hdf5'))
     def create_image(model):
         noise = tf.random.normal(shape=[10, codings_size])
         images = model(noise)
