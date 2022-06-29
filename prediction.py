@@ -46,8 +46,11 @@ def app():
     urllib.request.urlretrieve(
         'https://github.com/natcebron/test2/blob/b44cb3febf08c6b3ebd41c688f455369d0f4b7ee/Model_masks.hdf5', 'Model_masks.hdf5')
     predictor_model = load_model("Model_masks.hdf5")
+    urllib.request.urlretrieve(
+        'https://github.com/natcebron/test2/blob/b44cb3febf08c6b3ebd41c688f455369d0f4b7ee/UNET.hdf5', 'unet.hdf5')
+    unet = load_model("unet.hdf5")
+    
 
-    model.load_weights(weights_path)
     with open(dog_breeds_category_path, 'rb') as handle:
         dog_breeds = pickle.load(handle)
     #importing all the helper fxn from helper.py which we will create later
