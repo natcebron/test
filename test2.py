@@ -1,0 +1,233 @@
+import streamlit as st
+import streamlit.components.v1 as components
+import os                      #+Deployment
+import inspect                 #+Deployment
+#importing all the necessary libraries
+import pandas as pd
+import numpy as np                     
+import matplotlib.pyplot as plt
+import os
+import random
+import seaborn as sns
+from PIL import Image, ImageStat,ImageOps
+import matplotlib.image as mpimg
+import streamlit as st
+import os
+import matplotlib.pyplot as plt
+import seaborn as sns
+import cv2
+import numpy as np
+import pickle
+import tensorflow
+from tensorflow.keras import layers
+from tensorflow.keras import models,utils
+import pandas as pd
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import load_img,img_to_array
+from tensorflow.python.keras import utils
+import keras
+import matplotlib.cm as cm
+import streamlit.components.v1 as components
+import plotly.express as px
+import random 
+
+def app():
+    predictor_model = load_model(os.path.join('Model_masks.hdf5'))
+    unet = load_model(os.path.join('UNET.hdf5'))
+    def Gradcam(url):
+        img = tensorflow.keras.preprocessing.image.load_img(url, target_size = img_size) 
+        array = tensorflow.keras.preprocessing.image.img_to_array(img) 
+        array = np.expand_dims(array, axis = 0)
+        model = model_builder(weights = "imagenet")
+        model.layers[-1].activation = None
+        preds = model.predict(array) 
+        heatmap = make_gradcam_heatmap(array, model, last_conv_layer_name)
+        img = tensorflow.keras.preprocessing.image.load_img(url)
+        img = tensorflow.keras.preprocessing.image.img_to_array(img)
+        heatmap = np.uint8(255 * heatmap)
+        jet = cm.get_cmap("jet")
+        jet_colors = jet(np.arange(256))[:, :3]
+        jet_heatmap = jet_colors[heatmap]
+        jet_heatmap = tensorflow.keras.preprocessing.image.array_to_img(jet_heatmap)
+        jet_heatmap = jet_heatmap.resize((img.shape[1], img.shape[0]))
+        jet_heatmap = tensorflow.keras.preprocessing.image.img_to_array(jet_heatmap)
+        superimposed_img = jet_heatmap * 1 + img
+        superimposed_img = tensorflow.keras.preprocessing.image.array_to_img(superimposed_img)
+        plt.axis('off')
+        rouge, vert, bleu = superimposed_img.split()
+        image_array = np.array(superimposed_img,dtype='float64')
+        cv2.imwrite('data/images/gradcam.png',image_array)
+        return superimposed_img
+
+    def m_unet(img):
+        img = tensorflow.keras.preprocessing.image.load_img(img, target_size=(256, 256,3))
+        input_arr = tensorflow.keras.preprocessing.image.img_to_array(img)
+        img = cv2.cvtColor(input_arr, cv2.COLOR_BGR2GRAY)
+        img2 = img /255.
+        test_img_input=np.expand_dims(img2, axis=(0, 3))
+        prediction = (unet.predict(test_img_input)[0,:,:,0] > 0.5).astype(np.uint8)
+        z = (prediction * 255).astype(np.uint8)
+        z2 = Image.fromarray((z).astype('uint8'), mode='L')
+        z3 = Image.fromarray((img).astype('uint8'), mode='L')
+        im_out = Image.composite(z3, z2, z2)  # apply mask
+        img5 = np. array(im_out,dtype='float64')
+        img5 = np.expand_dims(img5, axis=-1)
+        img5.shape
+        cv2.imwrite('data/images/savedImage.png',img5)
+
+    def make_gradcam_heatmap(img_array, model, last_conv_layer_name, pred_index = None):
+        grad_model = tensorflow.keras.models.Model([model.inputs], [model.get_layer(last_conv_layer_name).output, model.output])
+
+        with tensorflow.GradientTape() as tape:
+            last_conv_layer_output, preds = grad_model(img_array)
+            if pred_index is None:
+                pred_index = tensorflow.argmax(preds[0])
+            class_channel = preds[:, pred_index]
+
+        grads = tape.gradient(class_channel, last_conv_layer_output)
+        pooled_grads = tensorflow.reduce_mean(grads, axis=(0, 1, 2))
+
+        last_conv_layer_output = last_conv_layer_output[0]
+        heatmap = last_conv_layer_output @ pooled_grads[..., tensorflow.newaxis]
+        heatmap = tensorflow.squeeze(heatmap)
+        heatmap = tensorflow.maximum(heatmap, 0) / tensorflow.math.reduce_max(heatmap)
+        return heatmap.numpy()  
+    model_builder = tensorflow.keras.applications.xception.Xception
+    img_size = (299, 299)
+    preprocess_input = tensorflow.keras.applications.xception.preprocess_input
+    decode_predictions = tensorflow.keras.applications.xception.decode_predictions
+    last_conv_layer_name = "block14_sepconv2_act"
+
+    def predictor(img_path): # here image is file name 
+        image = tensorflow.keras.preprocessing.image.load_img(img_path, target_size=(256, 256))
+        input_arr = tensorflow.keras.preprocessing.image.img_to_array(image)
+        input_arr = np.array([input_arr])  # Convert single image to a batch.
+        input_arr = input_arr.astype('float32') / 255.  # This is VERY important
+        predictions = predictor_model.predict(input_arr)
+        lst2 = ['COVID', 'Non_COVID','Normal']
+        test = pd.DataFrame(np.round(predictions,2),columns = lst2).transpose()
+        test.columns = ['values']
+        test = test.reset_index()
+        test.columns = ['name', 'values']
+        return test
+
+    st.markdown("# IMAGE ANALYSE INTERACTIVE")
+
+    selected_box = st.selectbox(
+    'Choose one of the following',
+    ('Choice','COVID','Normal','Non COVID')
+    )
+   
+    if selected_box == 'none':
+        st.write("")
+    if selected_box == 'COVID':
+
+        path="pictures/COVID/"
+        files=os.listdir(path)
+        cov=random.choice(files)
+        url = f"pictures/COVID/{cov}"
+        image2 = plt.imread(url,format='png')
+
+        col1, mid,col2 = st.columns([3,3,3])
+        with col1:
+            fig1 = plt.figure()
+            plt.imshow(image2, cmap='gray')
+            plt.axis('off')
+            st.subheader("Image de base")
+            st.pyplot(fig1,use_column_width=True)
+
+        with mid:
+                fig2 = plt.figure(figsize=(12, 12))
+                st.subheader("Gradcam avant correction")
+                plt.imshow(Gradcam(url))
+                st.pyplot(fig2)
+ 
+        with col2:
+                fig3 = plt.figure(figsize=(12, 12))
+                
+                m_unet(os.path.join(url))
+                st.subheader("Gradcam après correction")
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
+                st.pyplot(fig3)
+
+        prediction = predictor(os.path.join('data/images/savedImage.png'))
+        prediction = prediction.round(decimals = 2)
+        fig = px.bar(prediction,x = "values",y = "name",title = "Résultat de la prédiction",color="name",orientation = 'h',text='values')
+        fig.update_layout(width=900,height=600)
+        st.plotly_chart(fig)
+
+    if selected_box == 'Normal':
+        path="pictures/Normal"
+        files=os.listdir(path)
+        nor=random.choice(files)
+        url = f"pictures/Normal/{nor}"
+
+        image3 = plt.imread(url,format='png')
+
+        col1, mid,col2 = st.columns([3,3,3])
+        with col1:
+            fig1 = plt.figure()
+            plt.imshow(image3, cmap='gray')
+            plt.axis('off')
+            st.header("Upload picture")
+            st.pyplot(fig1,use_column_width=True)
+
+        with mid:
+                fig2 = plt.figure(figsize=(12, 12))
+                st.header("Gradcam before correction")
+                plt.imshow(Gradcam(url))
+                st.pyplot(fig2)
+ 
+        with col2:
+                fig3 = plt.figure(figsize=(12, 12))
+                
+                m_unet(os.path.join(url))
+                st.header("Gradcam after correction")
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
+                st.pyplot(fig3)
+
+        prediction = predictor(os.path.join('data/images/savedImage.png'))
+        prediction = prediction.round(decimals = 2)
+        fig = px.bar(prediction,x = "values",y = "name",title = "Résultat de la prédiction",color="name",orientation = 'h',text='values')
+        fig.update_layout(width=900,height=600)
+        st.plotly_chart(fig)
+
+    if selected_box == 'Non COVID':
+        path="pictures/Non_COVID"
+        files=os.listdir(path)
+        nnorm=random.choice(files)
+        url = f"pictures/Non_COVID/{nnorm}"
+
+        image4 = plt.imread(url,format='png')
+
+        col1, mid,col2 = st.columns([3,3,3])
+        with col1:
+            fig1 = plt.figure()
+            plt.imshow(image4, cmap='gray')
+            plt.axis('off')
+            st.header("Upload picture")
+            st.pyplot(fig1,use_column_width=True)
+
+        with mid:
+                fig2 = plt.figure(figsize=(12, 12))
+                st.header("Gradcam before correction")
+                plt.imshow(Gradcam(url))
+                st.pyplot(fig2)
+ 
+        with col2:
+                fig3 = plt.figure(figsize=(12, 12))
+                
+                m_unet(os.path.join(url))
+                st.header("Gradcam after correction")
+                plt.imshow(Gradcam(os.path.join('data/images/savedImage.png')))
+                st.pyplot(fig3)
+
+        prediction = predictor(os.path.join('data/images/savedImage.png'))
+        prediction = prediction.round(decimals = 2)
+        fig = px.bar(prediction,x = "values",y = "name",title = "Résultat de la prédiction",color="name",orientation = 'h',text='values')
+        fig.update_layout(width=900,height=600)
+        st.plotly_chart(fig)
+
+
+if __name__ == "__main__":
+    app()
