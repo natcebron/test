@@ -421,4 +421,3 @@ def app():
 
     st.title("Conclusion")
     if __name__ == '__main__':  # test
-    app()
