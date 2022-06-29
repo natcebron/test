@@ -319,7 +319,7 @@ def app():
 
     st.header("ETAPE 1 - Creation des GANS -  apprentissage semi-supervise")
 
-    st.image("./data/gan.png")
+    st.image((os.path.join(currentdir,"data/gan/gan.png"))
 
     st.subheader("generateur layer")
     st.write(""" Model: 'sequential'
