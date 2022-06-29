@@ -420,4 +420,3 @@ def app():
         create_image(model_normal)
 
     st.title("Conclusion")
-    if __name__ == '__main__':  # test
