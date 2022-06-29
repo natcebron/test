@@ -310,11 +310,120 @@ def app():
     st.write("le but est que le générateur arrive à tromper le plus souvent le discriminateur pour arriver à une image cohérente du dataset ")
     st.write("l'objectif de cette exprérimentation est de savoir si les images générées par le GAN à de l'importance positive ou négative sur les performances du modèle ? ")
 
-
-
-    st.image("./doss_damien/img.png",width =800)
-
-
+    st.image("data/img.png",width =800)
     st.title("Methodologie")
+
+    st.write("Pour ce test nous allons faire 4 Gan pour les différents labels , puis entrain un modèle resnet50 sur un dataset sans l'intervention des images génère par le gan et valider avec le dataset initial")
+    st.write("ensuite entrainer le modèle resnet50 sur un dataset exclusivement sur les images generes par les gans est validé par le dataset initial")
+    st.write("la 3ème etape est d' entrainer le modèle resnet50 sur un dataset mixte entre les datasets initial et generé par les gans et validé par le dataset inital")
+    st.write("les parametres sont fixe . Pour le GAN le bruit aleatoires a une taille de 100 pixel et les images de sortie sont de 32*32 ,pour le Resnet la taille d'entre de l'image est de 32*32")
+
+
+    st.header("ETAPE 1 - Creation des GANS -  apprentissage semi-supervise")
+
+    st.image("./doss_damien/gan.png")
+
+    st.subheader("generateur layer")
+    st.write(""" Model: 'sequential'
+        _________________________________________________________________
+         Layer (type)                Output Shape              Param #
+        =================================================================
+         dense (Dense)               (None, 6272)              633472
+        
+         reshape (Reshape)           (None, 7, 7, 128)         0
+        
+         batch_normalization (BatchN  (None, 7, 7, 128)        512
+         ormalization)
+        
+         conv2d_transpose (Conv2DTra  (None, 14, 14, 64)       204864
+         nspose)
+        
+         batch_normalization_1 (Batc  (None, 14, 14, 64)       256
+         hNormalization)
+        
+         conv2d_transpose_1 (Conv2DT  (None, 28, 28, 1)        1601
+         ranspose)
+        
+        =================================================================
+        Total params: 840,705
+        Trainable params: 840,321
+        Non-trainable params: 384
+        _________________________________________________________________"""
+        )
+
+    st.subheader("discriminateur layer")
+    st.write(""" Model: 'sequential_1'
+            _________________________________________________________________
+             Layer (type)                Output Shape              Param #
+            =================================================================
+             conv2d (Conv2D)             (None, 14, 14, 64)        1664
+            
+             dropout (Dropout)           (None, 14, 14, 64)        0
+            
+             conv2d_1 (Conv2D)           (None, 7, 7, 128)         204928
+            
+             dropout_1 (Dropout)         (None, 7, 7, 128)         0
+            
+             flatten (Flatten)           (None, 6272)              0
+            
+             dense_1 (Dense)             (None, 1)                 6273
+            
+            =================================================================
+            Total params: 212,865
+            Trainable params: 212,865
+            Non-trainable params: 0
+            __________________________________________"""
+         )
+
+
+
+    st.header("ETAPE 2 - Resnet -  Dataset initial")
+
+    data = pd.read_csv("/MODEL_train1.csv")
+    st.subheader(f"Train Accuracy mean ={data.accuracy.mean()}")
+    st.subheader(f"Validation Accuracy mean ={data.val_accuracy.mean()}")
+
+    table = pd.DataFrame({"precision":[0,0,0.48,0],"recall":[0,0,1,0],"f1-score":[0,0,0.65,0]})
+    st.dataframe(table,700)
+
+
+    st.subheader(f"Accuracy mean ={data.val_accuracy.mean()}")
+
+    st.header("ETAPE 3 - Resnet -  Dataset GAN")
+    data = pd.read_csv("data/MODEL_train2.csv")
+    st.subheader(f"Train Accuracy mean ={data.accuracy.mean()}")
+    st.subheader(f"Validation Accuracy mean ={data.val_accuracy.mean()}")
+
+
+    table = pd.DataFrame({"precision":[0.17,0,0.52,0.06],"recall":[0.95,0,0,0.03],"f1-score":[0.29,0,0.01,0.4]})
+
+    st.dataframe(table,700)
+
+
+
+    st.header("ETAPE 3 - Resnet -  Dataset initial + DATASET GAN")
+
+    data = pd.read_csv("./doss_damien/MODEL_train3.csv")
+
+    st.subheader(f"Train Accuracy mean ={data.accuracy.mean()}")
+    st.subheader(f"Validation Accuracy mean ={data.val_accuracy.mean()}")
+    table = pd.DataFrame({"precision":[0.30,0,0.48,0.07],"recall":[0.1,0,0,0.97],"f1-score":[0.02,0,0.64,0.3]})
+    st.dataframe(table,700)
+
+
+    if st.button("generer une image pour le label covid") :
+        create_image(model_covid)
+
+    if st.button("generer une image pour le label viral") :
+        create_image(model_viral)
+
+    if st.button("generer une image pour le label lung") :
+        create_image(model_lung)
+
+
+    if st.button("generer une image pour le label normal") :
+        create_image(model_normal)
+
+    st.title("Conclusion")
 if __name__ == '__main__':  # test
     app()
