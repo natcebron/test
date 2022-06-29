@@ -426,4 +426,3 @@ def app():
     if st.button("generer une image pour le label normal") :
         create_image(model_normal)
 
-    st.title("Conclusion")
