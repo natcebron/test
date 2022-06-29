@@ -116,10 +116,10 @@ def bokeh_distrib(dict_set, dark_mode=False, colors=colors, caption='title'):
 def main(graph, caption='title'):
 
     if (graph == 'graph2a') or (graph == 'graph3a'):
-        with open(f'biaised_graphs_data/graph2&3a.pickle', 'rb') as f:
+        with open(f'data/graph2&3a.pickle', 'rb') as f:
             graph_dict = pickle.load(f)
     else:
-        with open(f'biaised_graphs_data/{graph}.pickle', 'rb') as f:
+        with open(f'data/{graph}.pickle', 'rb') as f:
             graph_dict = pickle.load(f)
 
     if graph == 'graph1a':
