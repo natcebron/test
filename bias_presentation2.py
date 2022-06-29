@@ -376,7 +376,7 @@ def app():
 
     st.header("ETAPE 2 - Resnet -  Dataset initial")
 
-    data = pd.read_csv("/MODEL_train1.csv")
+    data = pd.read_csv(os.path.join(currentdir,"data/gan/MODEL_train1.csv"))
     st.subheader(f"Train Accuracy mean ={data.accuracy.mean()}")
     st.subheader(f"Validation Accuracy mean ={data.val_accuracy.mean()}")
 
@@ -387,7 +387,7 @@ def app():
     st.subheader(f"Accuracy mean ={data.val_accuracy.mean()}")
 
     st.header("ETAPE 3 - Resnet -  Dataset GAN")
-    data = pd.read_csv("data/MODEL_train2.csv")
+    data = pd.read_csv(os.path.join(currentdir,"data/gan/MODEL_train2.csv"))
     st.subheader(f"Train Accuracy mean ={data.accuracy.mean()}")
     st.subheader(f"Validation Accuracy mean ={data.val_accuracy.mean()}")
 
@@ -400,7 +400,7 @@ def app():
 
     st.header("ETAPE 3 - Resnet -  Dataset initial + DATASET GAN")
 
-    data = pd.read_csv("./doss_damien/MODEL_train3.csv")
+    data = pd.read_csv(os.path.join(currentdir,"data/gan/MODEL_train3.csv"))
 
     st.subheader(f"Train Accuracy mean ={data.accuracy.mean()}")
     st.subheader(f"Validation Accuracy mean ={data.val_accuracy.mean()}")
