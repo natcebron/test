@@ -111,7 +111,7 @@ def app():
         test.columns = ['name', 'values']
         return test
 
-    st.markdown("# IMAGE ANALYSE INTERACTIVE")
+    st.markdown("# ANALYSE DES IMAGES INTERACTIVES")
 
     selected_box = st.selectbox(
     'Choose one of the following',
