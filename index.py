@@ -12,7 +12,7 @@ import home
 import about
 import inspect
 import prediction
-import conclusion
+import conclusion2
 import about
 import __init__
 import test2
@@ -32,7 +32,7 @@ SOMMAIRE = {
     "Bias determination" : bias_presentation2,
     "Model" : model,
     "Prediction" : prediction,
-    "Conclusion" : conclusion,
+    "Conclusion" : conclusion2,
     "Interactif":test2,
     "Interactif2":__init__
 
