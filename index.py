@@ -32,9 +32,9 @@ SOMMAIRE = {
     "Bias determination" : bias_presentation2,
     "Model" : model,
     "Prediction" : prediction,
-    "Conclusion" : conclusion2,
     "Prediction interactive v1":test2,
-    "Prediction interactive v2":__init__
+    "Prediction interactive v2":__init__,
+     "Conclusion" : conclusion2
 
     
 }
