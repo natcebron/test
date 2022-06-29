@@ -308,7 +308,7 @@ def app():
     st.write("le but est que le générateur arrive à tromper le plus souvent le discriminateur pour arriver à une image cohérente du dataset ")
     st.write("l'objectif de cette exprérimentation est de savoir si les images générées par le GAN à de l'importance positive ou négative sur les performances du modèle ? ")
 
-    st.image("data/img.png",width =800)
+    st.image(os.path.join(currentdir,"data/img.png"),width =800)
     st.title("Methodologie")
 
     st.write("Pour ce test nous allons faire 4 Gan pour les différents labels , puis entrain un modèle resnet50 sur un dataset sans l'intervention des images génère par le gan et valider avec le dataset initial")
