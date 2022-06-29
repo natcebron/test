@@ -42,7 +42,7 @@ def app():
     st.markdown("# PRÉDICTION DES RADIOGRAPHIES")
     dog_breeds_category_path = os.path.join(currentdir, 'data/test.pkl')
 
-    predictor_model = load_model(os.path.join(currentdir, 'Model_masks.hdf5'))
+    predictor_model = load_model("https://github.com/natcebron/test2/blob/b44cb3febf08c6b3ebd41c688f455369d0f4b7ee/Model_masks.hdf5")
     unet = load_model(os.path.join(currentdir, 'UNET.hdf5'))
 
     with open(dog_breeds_category_path, 'rb') as handle:
