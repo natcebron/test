@@ -29,7 +29,7 @@ SOMMAIRE = {
     "Introduction" : introduction,
     "Dataset exploration" : exploration,
     "Group comparison" : group,
-    "Bias determination" : bias-presentation2,
+    "Bias determination" : bias_presentation2,
     "Model" : model,
     "Prediction" : prediction,
     "Conclusion" : conclusion,
