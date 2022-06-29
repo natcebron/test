@@ -284,6 +284,7 @@ def app():
     model_lung = load_model_gen(os.path.join(currentdir, 'gen_lung.hdf5'))
     model_viral = load_model_gen(os.path.join(currentdir, 'gen_viral.hdf5'))
     model_normal = load_model_gen(os.path.join(currentdir, 'gen_normal.hdf5'))
+    
     def create_image(model):
         noise = tf.random.normal(shape=[10, codings_size])
         images = model(noise)
@@ -318,7 +319,7 @@ def app():
 
     st.header("ETAPE 1 - Creation des GANS -  apprentissage semi-supervise")
 
-    st.image("./doss_damien/gan.png")
+    st.image("./data/gan.png")
 
     st.subheader("generateur layer")
     st.write(""" Model: 'sequential'
